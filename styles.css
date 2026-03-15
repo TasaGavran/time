@@ -1,0 +1,314 @@
+/* Core layout & helpers – responsive */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #f5eee6;
+  overflow-x: hidden;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, #c9a36a, #f5eee6);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f5eee6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.75rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #c9a36a, #f5eee6);
+  color: #2b211c;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f5eee6;
+  background: rgba(9, 9, 11, 0.16);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(249, 250, 251, 0.14);
+  transform: translateY(-1px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.7);
+}
+
+.glass-card {
+  position: relative;
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.12),
+      transparent 60%
+    ),
+    rgba(22, 18, 14, 0.92);
+  border-radius: 1.75rem;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 10, 7, 0.75);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  color: #f5eee6;
+  outline: none;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, transform 0.1s ease;
+}
+
+.input-field::placeholder {
+  color: rgba(245, 238, 230, 0.5);
+}
+
+.input-field:focus {
+  border-color: #c9a36a;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+.input-field:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(249, 250, 251, 0.18);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5eee6;
+  background: rgba(15, 10, 7, 0.85);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease, border-color 0.15s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.75);
+  background: rgba(249, 250, 251, 0.08);
+  border-color: rgba(249, 250, 251, 0.3);
+}
+
+/* Masonry-like gallery */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+.gallery-item {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+}
+
+.gallery-no-lightbox .gallery-item {
+  cursor: default;
+  border: 1px solid rgba(15, 10, 7, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  transform-origin: center center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.15),
+    transparent 45%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 163, 106, 0.8);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.75);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.05);
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* Scroll indicator animation */
+.scroll-line {
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Reveal animations base (GSAP enhances) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.about-card {
+  border-radius: 1.5rem;
+  padding: 1.4rem 1.3rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(15, 10, 7, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.dark .about-card {
+  background: rgba(15, 10, 7, 0.9);
+  border-color: rgba(249, 250, 251, 0.08);
+}
+
+/* Page transition overlay */
+#page-transition {
+  transition: opacity 0.45s ease;
+}
+
+/* Utility for admin tables reused in dashboard */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(15, 10, 7, 0.08);
+}
+
+.table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(15, 10, 7, 0.6);
+}
+
+.dark .table th,
+.dark .table td {
+  border-color: rgba(249, 250, 251, 0.08);
+}
+
+/* Hero pozadina – lokalna slika Time Caffe */
+.hero-bg {
+  background-image: url("assets/images/hero.png");
+  background-size: cover;
+  background-position: center;
+}
+

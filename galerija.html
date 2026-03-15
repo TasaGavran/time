@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Galerija | Time Caffe</title>
+    <meta
+      name="description"
+      content="Galerija Time Caffe-a u Jagodini – pogledajte fotografije enterijera, kafe, deserata i trenutaka sa gostima."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: "#2B211C",
+              coffee: "#4B3425",
+              latte: "#D9C3A3",
+              cream: "#F5EEE6",
+              gold: "#C9A36A",
+            },
+            fontFamily: {
+              display: ["Poppins", "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body
+    class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full overflow-x-hidden"
+  >
+    <div
+      id="page-transition"
+      class="pointer-events-none fixed inset-0 z-40 bg-espresso opacity-0"
+    ></div>
+
+    <header
+      class="sticky top-0 z-20 border-b border-espresso/10 bg-espresso/95 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6"
+      >
+        <a href="./index.html" class="flex items-center gap-3">
+          <img
+            src="./assets/time-caffe-logo.svg"
+            alt="Time Caffe logo"
+            class="h-8 w-8"
+          />
+          <span
+            class="font-display text-sm font-semibold tracking-wide text-cream"
+            >Time Caffe</span
+          >
+        </a>
+        <button
+          id="theme-toggle"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gold shadow-md shadow-black/50 hover:bg-white/10 transition-colors"
+          aria-label="Promeni temu"
+        >
+          <span id="theme-icon" class="text-lg">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="pb-16 pt-10">
+      <section class="mx-auto max-w-6xl px-4 md:px-6">
+        <header class="mb-8 md:mb-10">
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+          >
+            Galerija
+          </p>
+          <h1
+            class="mt-3 font-display text-3xl font-semibold tracking-tight text-espresso dark:text-cream md:text-4xl"
+          >
+            Trenuci iz Time Caffe-a
+          </h1>
+          <p
+            class="mt-3 max-w-2xl text-sm text-espresso/80 dark:text-cream/80"
+          >
+            Od prvog jutarnjeg espressa, preko popodnevnog cappuccina do
+            večernjih druženja – ovde je mali deo atmosfere koju volimo da
+            delimo sa vama.
+          </p>
+        </header>
+
+        <div class="masonry-grid">
+          <button class="gallery-item" data-src="./assets/images/galerija1.jpg">
+            <img src="./assets/images/galerija1.jpg" alt="Time Caffe – druženje u kafiću" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-src="./assets/images/galerija2.jpg">
+            <img src="./assets/images/galerija2.jpg" alt="Espresso i osvežavajuće piće" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-src="./assets/images/galerija3.jpg">
+            <img src="./assets/images/galerija3.jpg" alt="Ledene kafe na terasi" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-src="./assets/images/galerija4.jpg">
+            <img src="./assets/images/galerija4.jpg" alt="Osvežavajuća pića" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-src="./assets/images/galerija5.jpg">
+            <img src="./assets/images/galerija5.jpg" alt="Specijalno piće sa logom" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-src="./assets/images/galerija6.jpg">
+            <img src="./assets/images/galerija6.jpg" alt="Ledena kafa sa šlagom i čokoladom" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <div
+        id="lightbox"
+        class="fixed inset-0 z-40 hidden items-center justify-center bg-black/80 backdrop-blur"
+      >
+        <button
+          id="lightbox-close"
+          class="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+          aria-label="Zatvori"
+        >
+          ✕
+        </button>
+        <img
+          id="lightbox-image"
+          src=""
+          alt="Pregled fotografije"
+          class="max-h-[80vh] max-w-[90vw] rounded-3xl shadow-2xl shadow-black/70"
+        />
+      </div>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+

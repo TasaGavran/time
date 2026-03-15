@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Rezervacije | Time Caffe</title>
+    <meta
+      name="description"
+      content="Online rezervacija stola u Time Caffe-u u Jagodini. Brzo, jednostavno i sigurno."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: "#2B211C",
+              coffee: "#4B3425",
+              latte: "#D9C3A3",
+              cream: "#F5EEE6",
+              gold: "#C9A36A",
+            },
+            fontFamily: {
+              display: ["Poppins", "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body
+    class="bg-espresso text-cream font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full overflow-x-hidden"
+  >
+    <div
+      id="page-transition"
+      class="pointer-events-none fixed inset-0 z-40 bg-espresso opacity-0"
+    ></div>
+
+    <header
+      class="sticky top-0 z-20 border-b border-black/40 bg-black/60 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3 md:px-6"
+      >
+        <a href="./index.html" class="flex items-center gap-3">
+          <img
+            src="./assets/time-caffe-logo.svg"
+            alt="Time Caffe logo"
+            class="h-8 w-8"
+          />
+          <span
+            class="font-display text-sm font-semibold tracking-wide text-cream"
+            >Time Caffe</span
+          >
+        </a>
+        <button
+          id="theme-toggle"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gold shadow-md shadow-black/50 hover:bg-white/10 transition-colors"
+          aria-label="Promeni temu"
+        >
+          <span id="theme-icon" class="text-lg">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="min-h-screen bg-gradient-to-b from-espresso via-black to-espresso">
+      <section class="mx-auto max-w-4xl px-4 py-12 md:px-6 md:py-16">
+        <header class="mb-8 md:mb-10">
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+          >
+            Rezervacije
+          </p>
+          <h1
+            class="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl"
+          >
+            Rezervišite sto u Time Caffe-u.
+          </h1>
+          <p class="mt-3 max-w-2xl text-sm text-cream/80">
+            Popunite formu i naš tim će vas kontaktirati radi potvrde rezervacije.
+            Rezervacije za istog dana nakon 20h preporučujemo da napravite
+            telefonom zbog dostupnosti mesta.
+          </p>
+        </header>
+
+        <div class="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-start">
+          <form
+            id="reservation-form"
+            class="glass-card space-y-4 rounded-2xl border border-white/15 bg-white/5 p-6 shadow-card backdrop-blur-xl"
+          >
+            <div>
+              <label
+                for="res-name"
+                class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                >Ime i prezime</label
+              >
+              <input
+                id="res-name"
+                name="name"
+                type="text"
+                required
+                class="mt-2 input-field"
+                placeholder="Vaše ime"
+              />
+            </div>
+
+            <div>
+              <label
+                for="res-phone"
+                class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                >Telefon</label
+              >
+              <input
+                id="res-phone"
+                name="phone"
+                type="tel"
+                required
+                class="mt-2 input-field"
+                placeholder="+381 6x xxx xxxx"
+              />
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label
+                  for="res-date"
+                  class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                  >Datum</label
+                >
+                <input
+                  id="res-date"
+                  name="date"
+                  type="date"
+                  required
+                  class="mt-2 input-field"
+                />
+              </div>
+              <div>
+                <label
+                  for="res-time"
+                  class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                  >Vreme</label
+                >
+                <input
+                  id="res-time"
+                  name="time"
+                  type="time"
+                  required
+                  class="mt-2 input-field"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="res-people"
+                class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                >Broj osoba</label
+              >
+              <input
+                id="res-people"
+                name="people"
+                type="number"
+                min="1"
+                max="20"
+                required
+                class="mt-2 input-field"
+                placeholder="npr. 4"
+              />
+            </div>
+
+            <div>
+              <label
+                for="res-note"
+                class="block text-xs font-medium uppercase tracking-[0.18em] text-cream/80"
+                >Napomena (opciono)</label
+              >
+              <textarea
+                id="res-note"
+                name="note"
+                rows="4"
+                class="mt-2 w-full rounded-2xl border border-white/15 bg-black/40 p-3 text-sm text-cream outline-none shadow-lg shadow-black/40 transition-all duration-150 ease-out focus:border-gold"
+                placeholder="Povod, posebne želje, informacije o slavljeniku..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">
+              Pošalji rezervaciju
+            </button>
+            <p
+              id="reservation-status"
+              class="text-xs text-cream/70"
+            ></p>
+          </form>
+
+          <aside class="space-y-4 text-sm text-cream/80">
+            <div
+              class="rounded-2xl border border-white/15 bg-white/5 p-4 shadow-md shadow-black/40 backdrop-blur"
+            >
+              <h2 class="text-sm font-semibold text-cream">
+                Radno vreme i kontakt
+              </h2>
+              <p class="mt-2 text-xs">
+                <span class="font-medium text-gold">Radno vreme:</span><br />
+                Pon – Ned: 08:00 – 00:00
+              </p>
+              <p class="mt-2 text-xs">
+                <span class="font-medium text-gold">Telefon:</span><br />
+                +381 xx xxx xxxx
+              </p>
+              <p class="mt-2 text-xs">
+                <span class="font-medium text-gold">Adresa:</span><br />
+                Time Caffe, Jagodina, Srbija
+              </p>
+            </div>
+
+            <div class="text-xs text-cream/70">
+              <p>
+                Za veće događaje, zatvorene proslave ili posebne zahteve, molimo
+                vas da nas kontaktirate direktno telefonom ili putem e-pošte
+                kako bismo zajedno isplanirali idealno veče.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+

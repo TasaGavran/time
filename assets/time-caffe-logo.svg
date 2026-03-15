@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cupGradient" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5EEE6"/>
+      <stop offset="1" stop-color="#C9A36A"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="#2B211C"/>
+  <rect x="4.75" y="4.75" width="54.5" height="54.5" rx="17.5" stroke="url(#cupGradient)" stroke-opacity="0.35" stroke-width="1.5"/>
+  <path d="M19 25.5C19 23.567 20.567 22 22.5 22H37.5C39.433 22 41 23.567 41 25.5V36C41 39.314 38.314 42 35 42H25C21.6863 42 19 39.314 19 36V25.5Z" stroke="url(#cupGradient)" stroke-width="2"/>
+  <path d="M41 27.5H43.5C46.2614 27.5 48.5 29.7386 48.5 32.5C48.5 35.2614 46.2614 37.5 43.5 37.5H41" stroke="url(#cupGradient)" stroke-width="2"/>
+  <path d="M21 40H39.5" stroke="url(#cupGradient)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M25 18.5C26.2 19.4 26.7 20.3 26.7 21.3C26.7 22.1 26.5 22.7 26.2 23.3" stroke="#F5EEE6" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M30 18.5C31.2 19.4 31.7 20.3 31.7 21.3C31.7 22.1 31.5 22.7 31.2 23.3" stroke="#F5EEE6" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M35 18.5C36.2 19.4 36.7 20.3 36.7 21.3C36.7 22.1 36.5 22.7 36.2 23.3" stroke="#F5EEE6" stroke-width="1.4" stroke-linecap="round"/>
+  <circle cx="32" cy="48" r="1.4" fill="#C9A36A"/>
+</svg>
