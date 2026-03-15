@@ -1,6 +1,10 @@
 // Global UI enhancements, smooth transitions, GSAP animations and API calls
 
-const API_BASE_URL = "http://localhost:4000/api";
+// Na produkciji (Cloudflare) koristi isti domen /api; na localhost – lokalni backend
+const API_BASE_URL =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:4000/api"
+    : `${typeof window !== "undefined" ? window.location.origin : ""}/api`;
 
 // Fallback meni kada backend nije dostupan (isti kao u meni.html)
 const FALLBACK_MENU = [
@@ -80,6 +84,9 @@ function initPageTransitions() {
   const overlay = document.getElementById("page-transition");
   if (!overlay) return;
 
+  // Uvek sakrij overlay pri učitavanju (fix: nazad dugme više ne ostavlja braon ekran)
+  overlay.style.opacity = "0";
+
   function handleClick(e) {
     const a = e.target.closest("a");
     if (!a) return;
@@ -94,6 +101,16 @@ function initPageTransitions() {
   }
 
   document.addEventListener("click", handleClick);
+}
+
+function initScrollToHash() {
+  if (!window.location.hash) return;
+  const el = document.querySelector(window.location.hash);
+  if (el) {
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 }
 
 function initParallax() {
@@ -284,7 +301,7 @@ function initReservationForm() {
     } catch (err) {
       console.error(err);
       status.textContent =
-        "Došlo je do greške pri slanju rezervacije. Pokušajte ponovo ili nas kontaktirajte telefonom.";
+        "Rezervacije putem forme trenutno nisu dostupne. Molimo rezervišite telefonom: +381 xx xxx xxxx.";
     } finally {
       const btn = form.querySelector("button[type=submit]");
       if (btn) btn.disabled = false;
@@ -297,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initMobileMenu();
   initPageTransitions();
+  initScrollToHash();
   initParallax();
   initGalleryLightbox();
   initMenuPreview();
