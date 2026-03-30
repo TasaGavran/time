@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
+    <meta name="theme-color" content="#2B211C" />
+    <title>Admin – Meni | Time Caffe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: "#2B211C",
+              coffee: "#4B3425",
+              latte: "#D9C3A3",
+              cream: "#F5EEE6",
+              gold: "#C9A36A",
+            },
+            fontFamily: {
+              display: ["Poppins", "system-ui", "sans-serif"],
+              body: ["DM Sans", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=22" />
+    <style>
+      .admin-btn-edit { background: rgba(201,163,106,0.25); border: 1px solid rgba(201,163,106,0.6); border-radius: 0.5rem; padding: 0.35rem 0.75rem; font-size: 0.8rem; color: #4B3425; transition: background 0.2s, color 0.2s; }
+      .admin-btn-edit:hover { background: #C9A36A; color: #2B211C; }
+      .dark .admin-btn-edit { color: #F5EEE6; background: rgba(201,163,106,0.2); border-color: rgba(201,163,106,0.5); }
+      .dark .admin-btn-edit:hover { background: #C9A36A; color: #2B211C; }
+      .admin-btn-delete { background: rgba(185,28,28,0.15); border: 1px solid rgba(185,28,28,0.4); border-radius: 0.5rem; padding: 0.35rem 0.75rem; font-size: 0.8rem; color: #b91c1c; transition: background 0.2s, color 0.2s; }
+      .admin-btn-delete:hover { background: #b91c1c; color: #fff; }
+      .dark .admin-btn-delete { color: #fca5a5; }
+      .dark .admin-btn-delete:hover { background: #dc2626; color: #fff; }
+    </style>
+  </head>
+  <body class="bg-cream text-espresso font-body antialiased min-h-screen dark:bg-espresso dark:text-cream">
+    <!-- Zaštita lozinkom – sadržaj se prikazuje tek nakon prijave -->
+    <div id="admin-login" class="fixed inset-0 z-50 flex items-center justify-center bg-espresso/95 p-4">
+      <div class="w-full max-w-sm rounded-2xl border border-gold/30 bg-cream p-6 shadow-xl dark:bg-espresso dark:border-gold/40">
+        <h2 class="font-display text-xl font-semibold text-espresso dark:text-cream">Prijava u admin</h2>
+        <p class="mt-2 text-sm text-espresso/70 dark:text-cream/70">Unesite lozinku za pristup.</p>
+        <form id="login-form" class="mt-4">
+          <input type="password" id="admin-password" autocomplete="current-password" placeholder="Lozinka" class="w-full rounded-xl border border-espresso/20 bg-white px-4 py-2.5 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream" />
+          <p id="login-error" class="mt-2 hidden text-sm text-red-600 dark:text-red-400">Pogrešna lozinka.</p>
+          <button type="submit" class="mt-4 w-full rounded-xl bg-gold px-4 py-2.5 text-sm font-semibold text-espresso hover:bg-latte transition-colors">Uđi</button>
+        </form>
+      </div>
+    </div>
+    <div id="admin-content" class="hidden">
+    <header class="sticky top-0 z-20 border-b border-espresso/10 bg-espresso/95 backdrop-blur dark:border-white/10">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:px-6">
+        <div class="flex items-center gap-4">
+          <a href="./index.html" class="font-display text-lg font-semibold text-cream">Time Caffe</a>
+          <span class="text-sm text-gold/90">Admin · Meni</span>
+        </div>
+        <a
+          href="./index.html"
+          class="rounded-full border border-gold/40 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-gold hover:bg-gold hover:text-espresso transition-colors"
+        >
+          Nazad na sajt
+        </a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-8 md:px-6">
+      <h1 class="font-display text-2xl font-semibold tracking-tight text-espresso dark:text-cream md:text-3xl">
+        Uredi meni
+      </h1>
+      <p class="mt-1 text-sm text-espresso/70 dark:text-cream/70">
+        Dodaj, izmeni ili ukloni stavke menija.
+      </p>
+
+      <!-- Dodaj novu stavku -->
+      <section class="mt-8 rounded-2xl border border-espresso/10 bg-white/80 p-6 shadow-lg dark:border-white/10 dark:bg-espresso/80">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-gold">Dodaj stavku</h2>
+        <form id="add-form" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <label for="add-name" class="block text-xs font-medium text-espresso/80 dark:text-cream/80">Naziv</label>
+            <input type="text" id="add-name" required placeholder="npr. Espresso" class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream" />
+          </div>
+          <div>
+            <label for="add-category" class="block text-xs font-medium text-espresso/80 dark:text-cream/80">Kategorija</label>
+            <select id="add-category" required class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream">
+              <option value="">Izaberi kategoriju</option>
+              <option value="Kafa">Kafa</option>
+              <option value="Espresso pića">Espresso pića</option>
+              <option value="Osvežavajuća pića">Osvežavajuća pića</option>
+              <option value="Čajevi">Čajevi</option>
+              <option value="Deserti">Deserti</option>
+              <option value="Ukusi">Ukusi</option>
+              <option value="Ostalo">Ostalo</option>
+            </select>
+          </div>
+          <div>
+            <label for="add-price" class="block text-xs font-medium text-espresso/80 dark:text-cream/80">Cena (din)</label>
+            <input type="number" id="add-price" required min="0" placeholder="150" class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream" />
+          </div>
+          <div class="flex items-end">
+            <button type="submit" class="w-full rounded-xl bg-espresso px-4 py-2 text-sm font-medium text-cream hover:bg-coffee transition-colors dark:bg-gold dark:text-espresso dark:hover:bg-latte">
+              Dodaj
+            </button>
+          </div>
+        </form>
+        <div class="mt-3">
+          <label for="add-desc" class="block text-xs font-medium text-espresso/80 dark:text-cream/80">Opis (opciono)</label>
+          <input type="text" id="add-desc" placeholder="Kratak opis stavke" class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream" />
+        </div>
+      </section>
+
+      <!-- Lista stavki -->
+      <section class="mt-8 overflow-hidden rounded-2xl border border-espresso/10 bg-white/80 shadow-lg dark:border-white/10 dark:bg-espresso/80">
+        <div class="overflow-x-auto">
+          <table class="table w-full text-left">
+            <thead>
+              <tr>
+                <th>Naziv</th>
+                <th>Kategorija</th>
+                <th>Cena</th>
+                <th>Opis</th>
+                <th class="w-40 whitespace-nowrap text-right">Akcije</th>
+              </tr>
+            </thead>
+            <tbody id="menu-tbody">
+              <!-- popunjava JS -->
+            </tbody>
+          </table>
+        </div>
+        <p id="menu-empty" class="hidden p-6 text-center text-sm text-espresso/60 dark:text-cream/60">Nema stavki. Dodajte prvu iznad.</p>
+      </section>
+
+      <!-- Vizitkarta: gde vodi QR kod -->
+      <section class="mt-10 rounded-2xl border border-espresso/10 bg-white/80 p-6 shadow-lg dark:border-white/10 dark:bg-espresso/80">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-gold">Vizitkarta</h2>
+        <p class="mt-1 text-sm text-espresso/70 dark:text-cream/70">Odaberite gde vodi QR kod na vizitkarti (početna ili meni). Ista kartica, bez ponovnog štampanja.</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <label class="flex items-center gap-2">
+            <span class="text-sm text-espresso/80 dark:text-cream/80">QR kod vodi na:</span>
+            <select id="qr-target" class="rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream">
+              <option value="home">Početna</option>
+              <option value="menu">Meni</option>
+            </select>
+          </label>
+          <button type="button" id="save-qr-target" class="rounded-xl bg-gold px-4 py-2 text-sm font-medium text-espresso hover:bg-latte transition-colors">
+            Sačuvaj
+          </button>
+        </div>
+      </section>
+
+      <!-- Sačuvaj na sajt -->
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          id="save-to-site"
+          class="rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-espresso hover:bg-latte transition-colors"
+        >
+          Sačuvaj meni na sajt
+        </button>
+      </div>
+    </main>
+    </div>
+
+    <script>
+      (function () {
+        var menu = [];
+        var HASH = "4adddf4287b79c7a279ea400ece0e779bc756ba71d4bad9e1a47cc740d63f013";
+        function hashPass(p) {
+          return crypto.subtle.digest("SHA-256", new TextEncoder().encode(p)).then(function (buf) {
+            var a = new Uint8Array(buf), s = "";
+            for (var i = 0; i < a.length; i++) s += ("0" + a[i].toString(16)).slice(-2);
+            return s;
+          });
+        }
+        function checkAuth() {
+          if (sessionStorage.getItem("tc_admin") === HASH) {
+            document.getElementById("admin-login").classList.add("hidden");
+            document.getElementById("admin-content").classList.remove("hidden");
+            return true;
+          }
+          return false;
+        }
+        document.getElementById("login-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var pw = document.getElementById("admin-password").value;
+          document.getElementById("login-error").classList.add("hidden");
+          hashPass(pw).then(function (h) {
+            if (h === HASH) {
+              sessionStorage.setItem("tc_admin", HASH);
+              document.getElementById("admin-login").classList.add("hidden");
+              document.getElementById("admin-content").classList.remove("hidden");
+            } else {
+              document.getElementById("login-error").classList.remove("hidden");
+            }
+          });
+        });
+        if (!checkAuth()) { document.getElementById("admin-content").classList.add("hidden"); }
+
+        function loadMenu() {
+          function setAndRender(data) {
+            menu = Array.isArray(data) ? data.slice() : [];
+            render();
+          }
+          fetch("/api/menu")
+            .then(function (r) { return r.ok ? r.json() : []; })
+            .then(setAndRender)
+            .catch(function () {
+              fetch("/menu.json")
+                .then(function (r) { return r.ok ? r.json() : []; })
+                .then(setAndRender)
+                .catch(function () { setAndRender([]); });
+            });
+        }
+
+        function render() {
+          var tbody = document.getElementById("menu-tbody");
+          var empty = document.getElementById("menu-empty");
+          if (!tbody) return;
+          tbody.innerHTML = "";
+          if (menu.length === 0) {
+            empty.classList.remove("hidden");
+            return;
+          }
+          empty.classList.add("hidden");
+          menu.forEach(function (item, index) {
+            var tr = document.createElement("tr");
+            tr.dataset.index = index;
+            tr.innerHTML =
+              "<td class=\"font-medium\">" + escapeHtml(item.name) + "</td>" +
+              "<td>" + escapeHtml(item.category || "") + "</td>" +
+              "<td>" + (item.price != null ? item.price + " din" : "") + "</td>" +
+              "<td class=\"max-w-xs truncate text-espresso/70 dark:text-cream/70\">" + escapeHtml(item.description || "") + "</td>" +
+              "<td class=\"text-right\"><div class=\"flex items-center justify-end gap-2\"><button type=\"button\" class=\"edit-btn admin-btn-edit\">Izmeni</button>" +
+              "<button type=\"button\" class=\"delete-btn admin-btn-delete\">Ukloni</button></div></td>";
+            tbody.appendChild(tr);
+            tr.querySelector(".edit-btn").addEventListener("click", function () { editRow(index); });
+            tr.querySelector(".delete-btn").addEventListener("click", function () { deleteRow(index); });
+          });
+        }
+
+        function escapeHtml(s) {
+          var div = document.createElement("div");
+          div.textContent = s;
+          return div.innerHTML;
+        }
+
+        var CATEGORIES = ["Kafa", "Espresso pića", "Osvežavajuća pića", "Čajevi", "Deserti", "Ukusi", "Ostalo"];
+        function categorySelectOptions(selected) {
+          var list = (selected && CATEGORIES.indexOf(selected) >= 0) ? CATEGORIES : ((selected ? [selected] : []).concat(CATEGORIES));
+          return list.map(function (c) {
+            return "<option value=\"" + escapeHtml(c) + "\"" + (c === (selected || "") ? " selected" : "") + ">" + escapeHtml(c) + "</option>";
+          }).join("");
+        }
+        function editRow(index) {
+          var item = menu[index];
+          var tr = document.querySelector("#menu-tbody tr[data-index=\"" + index + "\"]");
+          if (!tr || !item) return;
+          tr.innerHTML =
+            "<td colspan=\"5\" class=\"p-3\">" +
+            "<form class=\"edit-form grid gap-3 sm:grid-cols-2 lg:grid-cols-5 items-end\">" +
+            "<div><label class=\"block text-xs text-espresso/70\">Naziv</label><input name=\"name\" value=\"" + escapeHtml(item.name) + "\" class=\"mt-1 w-full rounded border border-espresso/20 px-2 py-1.5 text-sm dark:bg-espresso/60 dark:border-white/20 dark:text-cream\" /></div>" +
+            "<div><label class=\"block text-xs text-espresso/70\">Kategorija</label><select name=\"category\" class=\"mt-1 w-full rounded border border-espresso/20 px-2 py-1.5 text-sm dark:bg-espresso/60 dark:border-white/20 dark:text-cream\">" + categorySelectOptions(item.category) + "</select></div>" +
+            "<div><label class=\"block text-xs text-espresso/70\">Cena</label><input name=\"price\" type=\"number\" min=\"0\" value=\"" + (item.price != null ? item.price : "") + "\" class=\"mt-1 w-full rounded border border-espresso/20 px-2 py-1.5 text-sm dark:bg-espresso/60 dark:border-white/20 dark:text-cream\" /></div>" +
+            "<div class=\"sm:col-span-2\"><label class=\"block text-xs text-espresso/70\">Opis</label><input name=\"description\" value=\"" + escapeHtml(item.description || "") + "\" class=\"mt-1 w-full rounded border border-espresso/20 px-2 py-1.5 text-sm dark:bg-espresso/60 dark:border-white/20 dark:text-cream\" /></div>" +
+            "<div><button type=\"submit\" class=\"rounded bg-gold px-3 py-1.5 text-sm font-medium text-espresso\">Sačuvaj</button> <button type=\"button\" class=\"cancel-edit rounded border border-espresso/30 px-3 py-1.5 text-sm dark:border-white/30\">Odustani</button></div>" +
+            "</form></td>";
+          tr.querySelector(".edit-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var fd = new FormData(e.target);
+            menu[index] = {
+              name: fd.get("name") || "",
+              category: fd.get("category") || "",
+              price: parseInt(fd.get("price"), 10) || 0,
+              description: fd.get("description") || ""
+            };
+            render();
+          });
+          tr.querySelector(".cancel-edit").addEventListener("click", function () { render(); });
+        }
+
+        function deleteRow(index) {
+          if (confirm("Ukloniti ovu stavku iz menija?")) {
+            menu.splice(index, 1);
+            render();
+          }
+        }
+
+        document.getElementById("add-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("add-name").value.trim();
+          var category = document.getElementById("add-category").value;
+          var price = parseInt(document.getElementById("add-price").value, 10) || 0;
+          var description = document.getElementById("add-desc").value.trim();
+          if (!name || !category) return;
+          menu.push({ name: name, category: category, price: price, description: description });
+          document.getElementById("add-name").value = "";
+          document.getElementById("add-category").value = "";
+          document.getElementById("add-price").value = "";
+          document.getElementById("add-desc").value = "";
+          render();
+        });
+
+        document.getElementById("save-to-site").addEventListener("click", function () {
+          var pw = prompt("Unesite admin lozinku da sačuvate meni na sajt:");
+          if (pw === null) return;
+          var btn = document.getElementById("save-to-site");
+          btn.disabled = true;
+          fetch("/api/menu", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: pw, menu: menu })
+          })
+            .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+            .then(function (r) {
+              if (r.ok) alert("Meni je sačuvan. Osvežite sajt da vidite promene."); else alert("Pogrešna lozinka.");
+            })
+            .catch(function () { alert("Greška pri čuvanju. Proverite da li je Worker sa KV podešen."); })
+            .finally(function () { btn.disabled = false; });
+        });
+
+        function loadSettings() {
+          fetch("/api/settings")
+            .then(function (r) { return r.ok ? r.json() : {}; })
+            .then(function (data) {
+              var sel = document.getElementById("qr-target");
+              if (sel && (data.qr_target === "menu" || data.qr_target === "home")) sel.value = data.qr_target;
+            })
+            .catch(function () {});
+        }
+        document.getElementById("save-qr-target").addEventListener("click", function () {
+          var pw = prompt("Unesite admin lozinku da sačuvate podešavanje vizitkarte:");
+          if (pw === null) return;
+          var sel = document.getElementById("qr-target");
+          var target = sel && sel.value === "menu" ? "menu" : "home";
+          var btn = document.getElementById("save-qr-target");
+          btn.disabled = true;
+          fetch("/api/settings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: pw, qr_target: target })
+          })
+            .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+            .then(function (r) {
+              if (r.ok) alert("Podešavanje vizitkarte je sačuvano. QR kod sada vodi na " + (target === "menu" ? "meni." : "početnu.")); else alert("Pogrešna lozinka.");
+            })
+            .catch(function () { alert("Greška pri čuvanju."); })
+            .finally(function () { btn.disabled = false; });
+        });
+
+        loadMenu();
+        loadSettings();
+      })();
+    </script>
+  </body>
+</html>

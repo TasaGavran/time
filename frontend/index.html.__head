@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#2B211C" />
+    <title>Time Caffe | Jagodina</title>
+    <meta
+      name="description"
+      content="Time Caffe u Jagodini – savršeno mesto za vrhunsku kafu, prijatnu atmosferu i druženje. Posetite nas u centru grada."
+    />
+    <meta
+      name="keywords"
+      content="Time Caffe, kafa, kafić Jagodina, espresso, deserti, rezervacije"
+    />
+    <meta name="author" content="Time Caffe" />
+
+    <!-- TailwindCSS CDN – u razvoju je u redu; za produkciju preporučeno: npm install tailwindcss i build -->
+    <script>
+      (function(){var w=console.warn;console.warn=function(m){if(typeof m==='string'&&m.indexOf('cdn.tailwindcss.com')!==-1)return;w.apply(console,arguments);};})();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: "#2B211C",
+              coffee: "#4B3425",
+              latte: "#D9C3A3",
+              cream: "#F5EEE6",
+              gold: "#C9A36A",
+            },
+            fontFamily: {
+              display: ["Poppins", "system-ui", "sans-serif"],
+              body: ["DM Sans", "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 18px 45px rgba(0,0,0,0.35)",
+              card: "0 18px 40px rgba(15,10,7,0.55)",
+            },
+          },
+        },
+      };
+    </script>
+    <script>
+      // Set default theme before paint (dark unless user chose light).
+      (function () {
+        try {
+          var stored = localStorage.getItem("timecaffe-theme");
+          if (stored === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (_) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts – manje generički izgled -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/styles.css?v=14" />
+  </head>
+  <body
+    class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full overflow-x-hidden"
+  >
+    <!-- Page transition overlay -->
+    <div
+      id="page-transition"
+      class="pointer-events-none fixed inset-0 z-40 bg-espresso opacity-0"
+    ></div>
+    <!-- Sakrij overlay odmah i pri povratku strelicom (bfcache + Brave/Chrome) -->
+    <script>
+      function hideOverlay(){var o=document.getElementById("page-transition");if(o)o.style.opacity="0";}
+      hideOverlay();
+      document.addEventListener("pageshow",hideOverlay);
+      document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")hideOverlay();});
+      document.addEventListener("DOMContentLoaded",function(){hideOverlay();var h=window.location.hash;if(h){var e=document.querySelector(h);if(e)e.scrollIntoView({behavior:"smooth",block:"start"});}});
+    </script>
+
+    <!-- Navigation -->
+    <header
+      class="fixed inset-x-0 top-0 z-30 border-b border-espresso/15 bg-cream/88 backdrop-blur-xl dark:border-[#1f1713] dark:bg-[#1f1713]"
+    >
+      <div
+        class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 md:px-6 min-w-0"
+      >
+        <a href="./index.html" class="flex items-center gap-3">
+          <div class="leading-tight">
+            <span
+              class="block font-display text-lg font-semibold tracking-wide text-espresso dark:text-cream"
+              >Time Caffe</span
+            >
+            <span
+              class="block text-xs font-medium uppercase tracking-[0.2em] text-gold/80"
+              >Jagodina</span
+            >
+          </div>
+        </a>
+
+        <nav
+          class="hidden items-center gap-8 text-sm font-medium text-espresso/90 md:flex dark:text-cream"
+        >
+          <a href="#onama" class="nav-link">O nama</a>
+          <a href="#meni" class="nav-link">Meni</a>
+          <a href="#galerija" class="nav-link">Galerija</a>
+          <a href="#lokacija" class="nav-link">Lokacija</a>
+          <a
+            href="./kontakt.html"
+            class="rounded-full border border-espresso/25 px-4 py-1.5 text-xs uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-espresso hover:text-cream dark:border-gold/40 dark:text-gold dark:hover:bg-gold dark:hover:text-espresso"
+            >Kontakt</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-espresso/5 text-espresso shadow-md shadow-black/10 transition-colors hover:bg-espresso/10 dark:border-white/10 dark:bg-white/5 dark:text-gold dark:shadow-black/50 dark:hover:bg-white/10"
+            aria-label="Promeni temu"
+          >
+            <span id="theme-icon" class="text-lg">☾</span>
+          </button>
+          <button
+            id="mobile-menu-toggle"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-espresso/5 text-espresso shadow-md shadow-black/10 transition-colors hover:bg-espresso/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-cream dark:shadow-black/40 dark:hover:bg-white/10"
+            aria-label="Otvori meni"
+          >
+            <span class="sr-only">Meni</span>
+            <div class="space-y-1.5">
+              <span
+                class="block h-0.5 w-4 rounded-full bg-espresso transition-all dark:bg-cream"
+              ></span>
+              <span
+                class="block h-0.5 w-3 rounded-full bg-espresso transition-all dark:bg-cream"
+              ></span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <div
+        id="mobile-menu"
+        class="pointer-events-none fixed inset-x-0 top-0 z-20 translate-y-[-100%] transform bg-gradient-to-b from-cream via-cream to-latte opacity-0 transition-all duration-500 ease-out md:hidden dark:from-espresso dark:via-espresso/95 dark:to-espresso/95"
+      >
+        <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:px-6 pb-10 pt-20 min-w-0">
+          <a href="#onama" class="mobile-link">O nama</a>
+          <a href="#meni" class="mobile-link">Meni</a>
+          <a href="#galerija" class="mobile-link">Galerija</a>
+          <a href="#lokacija" class="mobile-link">Lokacija</a>
+          <a href="./meni.html" class="mobile-link">Puni meni</a>
+          <a href="./kontakt.html" class="mobile-link">Kontakt</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="relative w-full min-w-0 overflow-x-hidden">
+      <section
+        id="hero"
+        class="section-melt relative z-0 flex min-h-screen items-center justify-center overflow-hidden bg-[#bea076] text-espresso dark:bg-[#211812] dark:text-cream"
+      >
+        <!-- Parallax background -->
+        <div
+          class="pointer-events-none absolute inset-0 z-0 hero-bg"
+          data-parallax
+        ></div>
+        <div
+          class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#f5eee6]/88 via-[#e6d2b4]/52 to-[#bea076]/95 dark:from-[#1f1713]/98 dark:via-[#1b140f]/90 dark:to-[#211812]"
+        ></div>
+
+        <div
+          class="relative z-20 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 px-4 pt-28 pb-20 md:flex-row md:items-center md:justify-between md:px-6 min-w-0"
+        >
+          <div class="max-w-xl space-y-7 md:space-y-8">
+            <p
+              class="inline-flex items-center gap-2 rounded-full bg-espresso/5 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-espresso/80 ring-1 ring-espresso/15 backdrop-blur dark:bg-white/5 dark:text-gold/90 dark:ring-white/10"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+              Jagodina · Srbija
+            </p>
+            <h1
+              class="font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl"
+            >
+              Dobrodošli u
+              <span class="block bg-gradient-to-r from-coffee via-espresso to-gold bg-clip-text text-transparent dark:from-gold dark:to-latte"
+                >Time Caffe</span
+              >
+            </h1>
+            <p class="max-w-md text-sm text-espresso/80 dark:text-cream/80 md:text-base">
+              Mesto gde se vrhunska kafa, prijatna atmosfera i dobra energija
+              susreću. Bilo da dolazite na jutarnju espresso pauzu, poslovni
+              sastanak ili večernje druženje – kod nas je svaki trenutak
+              pažljivo isplaniran.
+            </p>
+
+            <div class="mt-2 flex flex-wrap items-center gap-4 md:mt-3">
+              <a
+                href="./meni.html"
+                class="btn-primary"
+              >
+                Pogledaj meni
+              </a>
+              <a
+                href="#lokacija"
+                class="btn-ghost"
+              >
+                Lokacija
+              </a>
+            </div>
+
+            <div
+              class="flex items-center gap-6 text-xs text-espresso/70 dark:text-cream/60 md:text-sm"
+              style="margin-top: 4rem;"
+            >
+              <div class="flex items-center gap-2">
+                <span class="text-gold">★</span>
+                <span>Pažljivo birane mešavine kafe</span>
+              </div>
+              <div class="hidden h-4 w-px bg-espresso/20 dark:bg-cream/20 md:block"></div>
+              <div class="hidden items-center gap-2 md:flex">
+                <span class="text-gold">☕</span>
+                <span>Topla, prijatna atmosfera</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero card -->
+          <div
+            class="relative mt-10 w-full max-w-sm md:mt-0 md:max-w-md"
+          >
+            <div
+              class="glass-card relative overflow-hidden rounded-3xl border border-espresso/10 bg-white/65 p-6 shadow-card backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+            >
+              <div
+                class="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-gold/20 blur-3xl"
+              ></div>
+              <div
+                class="pointer-events-none absolute -bottom-16 right-0 h-40 w-40 rounded-full bg-coffee/30 blur-3xl"
+              ></div>
+
+              <div class="relative space-y-5">
+                <h2
+                  class="font-display text-lg font-semibold tracking-tight text-espresso dark:text-cream"
+                >
+                  Iz našeg izbora
+                </h2>
+                <p class="text-sm text-espresso/80 dark:text-cream/80">
+                  Probajte specijalitet kuće:
+                  <span class="font-medium text-gold"
+                    >Time Signature Latte</span
+                  >
+                  sa domaćim sirupom od karamela i
+                  <span class="font-medium text-gold">Espresso Tonic</span> za
+                  osvežavajući twist.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 text-xs text-espresso/80 dark:text-cream/80">
+                  <div class="space-y-2">
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-gold">
+                      Radno vreme
+                    </p>
+                    <p>Pon – Ned: 08:00 – 00:00</p>
+                  </div>
+                  <div class="space-y-2">
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-gold">
+                      Lokacija
+                    </p>
+                    <p>Knjeginje Milice 76/1, Jagodina</p>
+                  </div>
+                </div>
+
+                <a
+                  href="#lokacija"
+                  class="inline-flex items-center gap-2 text-xs font-medium text-coffee hover:text-espresso dark:text-gold dark:hover:text-gold/80"
+                >
+                  Pronađi nas na mapi
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll hint – samo na mobilnom -->
+        <div
+          class="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center text-xs text-espresso/60 dark:text-cream/70 md:hidden"
+        >
+          <span class="mb-2 text-[11px] tracking-[0.28em] uppercase"
+            >Pomeri nadole</span
+          >
+          <div
+            class="h-10 w-[1px] overflow-hidden bg-gradient-to-b from-gold/80 via-gold/40 to-transparent"
+          >
+            <div class="scroll-line h-full w-full bg-gradient-to-b from-transparent via-gold/80 to-transparent"></div>
+          </div>
+        </div>
+      </section>
+      <!-- About -->
+      <section
+        id="onama"
+        class="section-melt bg-gradient-to-b from-[#bea076] via-[#e8d3b8] to-[#e4cfb3] py-20 dark:bg-gradient-to-b dark:from-[#211812] dark:via-[#1a130f] dark:to-[#2a1f18]"
+      >
+        <div class="mx-auto w-full max-w-6xl px-4 md:px-6 min-w-0">
+          <div
+            class="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.28em] text-coffee/75 dark:text-gold"
+              >
+                O nama
+              </p>
+              <h2
+                class="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-espresso dark:text-cream md:text-3xl"
+              >
+                Savremeni kafić sa toplom dušom, u srcu Jagodine.
+              </h2>
+            </div>
+            <p
+              class="max-w-md text-sm text-espresso/80 dark:text-cream/80 md:text-sm"
+            >
+              Time Caffe je zamišljen kao vaše sigurno mesto: za prvu jutarnju
+              kafu, neobavezno druženje ili duge razgovore uz čašu vina. Naš
+              enterijer kombinuje tople tonove drveta, nežno osvetljenje i
+              moderan dizajn, stvarajući atmosferu u kojoj vreme teče sporije.
+            </p>
+          </div>
+
+          <div class="grid gap-8 md:grid-cols-[1.3fr,1fr]">
+            <div
+              class="grid gap-6 md:grid-cols-2"
+            >
+              <article class="about-card reveal-up">
+                <h3 class="text-base font-semibold text-espresso dark:text-cream">
+                  Vrhunska kafa i izbor pića
+                </h3>
+                <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
+                  Radimo sa pažljivo odabranim prženjima kafe, pripremljenim od
+                  strane obučenih barista. Pored espresso klasika nudimo i
+                  specijalitete kuće, čajeve, koktele i osvežavajuće napitke.
+                </p>
+              </article>
+
+              <article class="about-card reveal-up" data-delay="0.15">
+                <h3 class="text-base font-semibold text-espresso dark:text-cream">
+                  Prostor za susrete i trenutke
+                </h3>
+                <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
+                  Bilo da dolazite sami sa knjigom, u paru ili sa društvom, naš
+                  prostor je osmišljen tako da se u njemu osećate opušteno i
+                  dobrodošlo – uz pažljivo odabranu muziku i ambijentalno
+                  svetlo.
+                </p>
+              </article>
+
+              <article class="about-card reveal-up" data-delay="0.3">
+                <h3 class="text-base font-semibold text-espresso dark:text-cream">
+                  Domaći deserti
+                </h3>
+                <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
+                  Uživajte u ponudi kolača, torti i sitnih zalogaja koji se
+                  savršeno slažu sa vašim omiljenim napitkom, pripremljeni u
+                  saradnji sa lokalnim poslastičarnicama.
+                </p>
+              </article>
+
+              <article class="about-card reveal-up" data-delay="0.45">
+                <h3 class="text-base font-semibold text-espresso dark:text-cream">
+                  Pažljiva usluga
+                </h3>
+                <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
+                  Naš tim veruje da je svaki gost poseban. Trudimo se da zapamtimo
+                  vašu omiljenu kafu, da preporučimo novo piće i da svaki dolazak
+                  u Time Caffe učinimo iskustvom kojem ćete se vraćati.
+                </p>
+              </article>
+            </div>
+
+            <div
+              class="relative flex items-center justify-center md:justify-end"
+            >
+              <div
+                class="relative w-full max-w-xs overflow-hidden rounded-[2rem] border border-espresso/10 bg-espresso shadow-soft dark:border-white/10"
+              >
+                <img
+                  src="./assets/images/about.png"
+                  alt="Enterijer Time Caffe – gosti u kafiću"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/20 to-transparent"
+                ></div>
+                <div class="absolute bottom-5 left-5 space-y-1 text-cream">
+                  <p class="text-xs uppercase tracking-[0.2em] text-gold">
+                    Unutra
+                  </p>
+                  <p class="text-sm font-medium">
+                    Toplo, moderno, i uvek spremno za druženje.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu preview -->
+      <section
+        id="meni"
+        class="section-melt bg-gradient-to-b from-[#e4cfb3] via-[#f1e6da] to-[#ecdbc7] py-20 dark:from-[#2a1f18] dark:via-[#1f1713] dark:to-[#261c15]"
+      >
+        <div class="mx-auto w-full max-w-6xl px-4 md:px-6 min-w-0">
+          <div
+            class="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+              >
+                Naš meni
+              </p>
+              <h2
+                class="mt-3 font-display text-2xl font-semibold tracking-tight text-espresso dark:text-cream md:text-3xl"
+              >
+                Od espressa do koktela – sve na jednom mestu.
+              </h2>
+            </div>
+            <a href="./meni.html" class="text-sm font-medium text-gold">
+              Pogledaj ceo meni →
+            </a>
+          </div>
+
+          <div
+            id="menu-preview"
+            class="grid gap-6 md:grid-cols-3"
+          >
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Kafa</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Espresso</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Klasičan kratki espresso sa bogatom cremom.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">150 din</span>
+              </div>
+            </article>
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Espresso pića</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Cappuccino</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Espresso sa penom od mleka.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">200 din</span>
+              </div>
+            </article>
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Espresso pića</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Cold latte</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Hladni latte sa ledom.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">260 din</span>
+              </div>
+            </article>
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Espresso pića</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Hot latte</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Topao latte sa kremastom penom.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">260 din</span>
+              </div>
+            </article>
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Osvežavajuća pića</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Ice coffee</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Hladna kafa sa ledom.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">260 din</span>
+              </div>
+            </article>
+            <article class="reveal-up rounded-2xl border border-espresso/20 bg-[#ead8c4]/88 p-4 shadow-lg shadow-black/20 backdrop-blur dark:border-white/12 dark:bg-[#1a130f]/88 dark:shadow-black/45">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-gold mb-1">Kafa</p>
+                  <h3 class="text-sm font-semibold text-espresso dark:text-cream">Instant coffee</h3>
+                  <p class="mt-1 text-xs text-espresso/70 dark:text-cream/70">Instant kafa po izboru – vruća ili hladna.</p>
+                </div>
+                <span class="ml-2 rounded-full bg-espresso text-xs font-semibold text-cream px-3 py-1 dark:bg-gold dark:text-espresso">220 din</span>
+              </div>
+            </article>
+          </div>
+
+          <p
+            id="menu-preview-status"
+            class="mt-6 text-center text-xs text-espresso/60 dark:text-cream/60"
+          >
+            Izdvojene stavke iz našeg menija.
+          </p>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section
+        id="galerija"
+        class="section-melt bg-gradient-to-b from-[#ecdbc7] via-[#f5eee6] to-[#e2ccb0] py-20 dark:bg-gradient-to-b dark:from-[#261c15] dark:via-[#201813] dark:to-[#1b140f]"
+      >
+        <div class="mx-auto w-full max-w-6xl px-4 md:px-6 min-w-0">
+          <div class="mb-10 md:mb-12">
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+            >
+              Galerija
+            </p>
+            <h2
+              class="mt-3 font-display text-2xl font-semibold tracking-tight text-espresso dark:text-cream md:text-3xl"
+            >
+              Trenuci iz Time Caffe-a
+            </h2>
+            <p class="mt-3 max-w-md text-sm text-espresso/80 dark:text-cream/80">
+              Pogledajte delić atmosfere – šoljice kafe, detalje enterijera i
+              trenutke koji Time Caffe čine posebnim.
+            </p>
+          </div>
+
+          <div
+            class="masonry-grid gallery-no-lightbox"
+            aria-label="Galerija – samo pregled"
+          >
+            <!-- Slike se ne otvaraju u lightbox; hover animacija ostaje -->
+            <div class="gallery-item">
+              <img src="./assets/images/galerija1.jpg" alt="Koktel u staklu – Time Caffe" loading="lazy" decoding="async" />
+            </div>
+            <div class="gallery-item">
+              <img src="./assets/images/galerija2.jpg" alt="Malina milkshake sa šlagom" loading="lazy" decoding="async" />
+            </div>
+            <div class="gallery-item">
+              <img src="./assets/images/galerija3.jpg" alt="Espresso u šoljici" loading="lazy" decoding="async" />
+            </div>
+            <div class="gallery-item">
+              <img src="./assets/images/galerija4.jpg" alt="Topla čokolada i osvežavajuće piće" loading="lazy" decoding="async" />
+            </div>
+            <div class="gallery-item">
+              <img src="./assets/images/galerija5.jpg" alt="Milkshake varijacije – Time Caffe" loading="lazy" decoding="async" />
+            </div>
+            <div class="gallery-item">
+              <img src="./assets/images/galerija6.jpg" alt="Čokoladni napitak sa šlagom" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div
+          id="lightbox"
+          class="fixed inset-0 z-40 hidden items-center justify-center bg-black/80 backdrop-blur"
+        >
+          <button
+            id="lightbox-close"
+            class="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+            aria-label="Zatvori"
+          >
+            ✕
+          </button>
+          <img
+            id="lightbox-image"
+            src=""
+            alt="Pregled fotografije"
+            class="max-h-[80vh] max-w-[90vw] rounded-3xl shadow-2xl shadow-black/70"
+          />
+        </div>
+      </section>
+
+      <!-- Location -->
+      <section
+        id="lokacija"
+        class="section-melt bg-gradient-to-b from-[#e2ccb0] via-[#d7be9d] to-[#ccb79d] py-20 text-espresso dark:from-[#1b140f] dark:via-[#17110e] dark:to-[#130e0c] dark:text-cream"
+      >
+        <div class="mx-auto w-full max-w-6xl px-4 md:px-6 min-w-0">
+          <div
+            class="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+              >
+                Gde se nalazimo
+              </p>
+              <h2
+                class="mt-3 font-display text-2xl font-semibold tracking-tight md:text-3xl"
+              >
+                Uvek blizu vaših planova.
+              </h2>
+              <p class="mt-3 max-w-md text-sm text-espresso/80 dark:text-cream/80">
+                Time Caffe se nalazi u centru Jagodine, lako dostupan za
+                pešake, bicikliste i vozače. Nakon šetnje gradom, svratite na
+                šoljicu kafe.
+              </p>
+            </div>
+            <div class="space-y-2 text-sm text-espresso/80 dark:text-cream/80">
+              <p><span class="font-medium text-gold">Adresa:</span> Knjeginje Milice 76/1, Jagodina</p>
+              <p><span class="font-medium text-gold">Telefon:</span> +381 xx xxx xxxx</p>
+              <p><span class="font-medium text-gold">Radno vreme:</span> Pon – Ned: 08:00 – 00:00</p>
+              <p class="pt-2 text-espresso/90 dark:text-cream/90">Za rezervaciju stola pozovite nas na navedeni broj.</p>
+            </div>
+          </div>
+
+          <div class="overflow-hidden rounded-3xl border border-espresso/15 shadow-soft dark:border-white/10">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2854.41171040937!2d21.260075!3d43.976672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4756c4143ea59c9f%3A0x4f3c95683f6940db!2sTime%20Caffe!5e0!3m2!1ssr!2srs!4v1700000000000!5m2!1ssr!2srs"
+              width="100%"
+              height="360"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Time Caffe na mapi"
+            ></iframe>
+            <p class="mt-2 text-center text-[11px] text-espresso/50 dark:text-cream/50">Ako mapa ne učitava, isključite blokator oglasa za ovaj sajt.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-espresso/15 bg-gradient-to-b from-[#ccb79d] via-[#dfcfbc] to-cream py-8 text-espresso backdrop-blur dark:border-black/40 dark:bg-gradient-to-b dark:from-[#17110e] dark:via-[#130f0c] dark:to-[#0f0b09] dark:text-cream"
+    >
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6 min-w-0">
+        <div class="flex items-center gap-3">
+          <div class="leading-tight">
+            <p class="text-sm font-semibold">Time Caffe</p>
+            <p class="text-xs text-espresso/70 dark:text-cream/70">Knjeginje Milice 76/1, Jagodina, Srbija</p>
+          </div>
+        </div>
+          <div class="flex flex-col gap-2 text-xs text-espresso/70 dark:text-cream/70 md:flex-row md:items-center md:gap-6">
+          <div class="flex items-center gap-3">
+            <span class="font-medium text-espresso dark:text-cream">Pratite nas:</span>
+            <div class="flex items-center gap-2">
+              <a href="#" class="social-icon inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-white text-espresso transition-colors hover:border-gold hover:bg-gold hover:text-espresso dark:border-cream/20 dark:bg-espresso/80 dark:text-cream" aria-label="Instagram">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="#" class="social-icon inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-white text-espresso transition-colors hover:border-gold hover:bg-gold hover:text-espresso dark:border-cream/20 dark:bg-espresso/80 dark:text-cream" aria-label="Facebook">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span>Kontakt: info@timecaffe.rs</span>
+            <span class="hidden h-3 w-px bg-espresso/20 dark:bg-cream/20 md:block"></span>
+            <span>Tel: +381 xx xxx xxxx · Za rezervaciju stola pozovite nas</span>
+          </div>
+        </div>
+        <p class="text-xs text-espresso/60 dark:text-cream/60 md:text-right">
+          © 2026 Time Caffe – Sva prava zadržana
+          <a href="./admin.html" class="ml-2 text-gold/80 hover:text-gold">Admin</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="/main.js?v=4" defer></script>
+  </body>
+</html>
+

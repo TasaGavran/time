@@ -1,0 +1,31 @@
+Kako da sajt pravilno otvorite (Live Server i link na meni)
+===========================================================
+
+Problem: "Cannot GET /time-caffe/frontend/meni.html" se javlja kada
+u VS Code-u imate otvoren CEO projekat (npr. d:\AI\sajt), a ne samo
+folder sa sajtom. Tada Live Server služi iz korena projekta i putanja
+do menija ne odgovara.
+
+REŠENJE – način 1 (preporučeno):
+---------------------------------
+1. U VS Code-u: File → Open Folder (Ctrl+K Ctrl+O).
+2. Izaberite SAMO folder: time-caffe\frontend
+   (ne ceo projekat "sajt", već unutrašnji folder "frontend").
+3. U Explorer-u desni klik na index.html → "Open with Live Server".
+4. U browseru će adresa biti npr. http://127.0.0.1:5500/
+   i "Pogledaj ceo meni" vodi na http://127.0.0.1:5500/meni.html.
+
+REŠENJE – način 2 (ako ostajete na celom projektu):
+----------------------------------------------------
+1. U root-u projekta (d:\AI\sajt) u .vscode\settings.json je podešeno
+   da Live Server koristi root "/time-caffe/frontend".
+2. Pokrenite Live Server na fajlu: time-caffe\frontend\index.html
+   (desni klik na taj fajl → Open with Live Server).
+3. Ako i dalje ne radi, koristite način 1.
+
+Backend (meni iz baze):
+-----------------------
+- U folderu backend: npm install, pa npm run dev.
+- Baza: kreirati time_caffe, pokrenuti database\schema.sql.
+- Kada je backend uključen, "Naš meni" i stranica "Meni" učitavaju
+  stavke iz baze; inače se prikazuje ugrađeni spisak.

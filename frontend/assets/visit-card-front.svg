@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 55" width="85mm" height="55mm">
+  <defs>
+    <linearGradient id="bgFront" x1="0" y1="0" x2="85" y2="55" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B211C"/>
+      <stop offset="1" stop-color="#4B3425"/>
+    </linearGradient>
+    <linearGradient id="goldTop" x1="0" y1="0" x2="85" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C9A36A" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#F5EEE6" stop-opacity="0.05"/>
+    </linearGradient>
+    <clipPath id="qrClip" clipPathUnits="userSpaceOnUse">
+      <rect x="52" y="19" width="18" height="18" rx="3.5"/>
+    </clipPath>
+  </defs>
+
+  <rect width="85" height="55" rx="3" fill="url(#bgFront)"/>
+
+  <!-- minimal frame -->
+  <rect x="5" y="5" width="75" height="45" rx="2.5" fill="none" stroke="#C9A36A" stroke-opacity="0.25"/>
+
+  <!-- (no extra top decorations) -->
+
+  <!-- Top badge -->
+  <text x="11" y="13" font-family="system-ui, sans-serif" font-size="3.1" fill="#C9A36A" letter-spacing="0.10em">
+    Jagodina &#183; Srbija
+  </text>
+
+  <!-- Brand -->
+  <text x="11" y="24" font-family="system-ui, sans-serif" font-size="7.2" fill="#F5EEE6" font-weight="900">
+    Time
+  </text>
+  <text x="11" y="32" font-family="system-ui, sans-serif" font-size="7.2" fill="#C9A36A" font-weight="900">
+    Caffe
+  </text>
+  <text x="11" y="41" font-family="system-ui, sans-serif" font-size="3.5" fill="#D9C3A3" font-style="italic">
+    Vreme za kafu.
+  </text>
+
+  <!-- QR box (centered vertically, slightly right of text) -->
+  <rect x="52" y="19" width="18" height="18" rx="3.5" fill="#ffffff" stroke="#C9A36A" stroke-opacity="0.75"/>
+  <g clip-path="url(#qrClip)">
+    <image
+      x="52"
+      y="19"
+      width="18"
+      height="18"
+      preserveAspectRatio="none"
+      shape-rendering="crispEdges"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAklEQVR4AewaftIAAAWOSURBVO3BUW4j25IEQY8E979ln/4uHAFVIKmnyRtm8R+qlhiqFhmqFhmqFhmqFhmqFnnxgyT8dSonSfgWlZMk3KXyRBKeUHlXEv46lauhapGhapGhapGhapGhapEXD6n8tiQ8oXJXEp5IwonKSRLepXKShLuScKLyhMpvS8JdQ9UiQ9UiQ9UiQ9UiQ9UiLz4kCe9S+YQkvEvlJAknSfiWJPx1SXiXyruGqkWGqkWGqkWGqkWGqkVeLKRykoQrlZMkfEsSTlTqPUPVIkPVIkPVIkPVIkPVIi/q16mcJOFE5SQJd6n8FwxViwxViwxViwxVi7z4EJW/IgknKldJOFE5ScKJykkSvkXlriScqHyCyl8wVC0yVC0yVC0yVC0yVC3y4qEk1N+QhBOVb0nCXzZULTJULTJULTJULTJULRL/4T8sCU+oPJGEu1SeSMK7VDYZqhYZqhYZqhYZqhYZqhZ58YMknKicJOFE5V1JeELlJAlXKidJ+ASVqyR8gspdSfiEJJyo3JWEE5WTJJyoXA1ViwxViwxViwxViwxVi7z4gcpJEr4lCScqTyThROUqCScqn5CEu5LwhMpJEt6VhBOVd6mcJOFdQ9UiQ9UiQ9UiQ9UiLx5SOUnCE0m4UjlJwonKicq7knCi8oTKVRKeUPltKk8k4V0qJ0m4a6haZKhaZKhaZKhaZKha5MX/iMpdKidJOFE5ScJdKidJOFF5l8onqFwl4YkkPKFylYQTlSdU7hqqFhmqFhmqFhmqFhmqFnnxZUm4S+UkCU8k4UTltyXhv0rlE5JwonI1VC0yVC0yVC0yVC0yVC3y4gdJ+ASVkyTcpXKShBOVkyTcpXKicpKEE5WrJJwk4QmVkyT8f5SEdw1ViwxViwxViwxViwxVi7x4SOWJJJyoXCXhCZV3qZwk4QmVd6mcJOEkCXepPKHyRBKuVJ5QOUnCXUPVIkPVIkPVIkPVIi9+oHKShCdUTpJwpfIJSfgWlSeScKVykoQTlZMknKjclYS/TuWuoWqRoWqRoWqRoWqRoWqR+A8HSThROUnCicq7knCi8q4kfILKXUl4QuVdSThROUnCEyrfkoQTlauhapGhapGhapGhapGhapEXP1B5QuWJJNyl8kQSTlSuVE6S8AlJ+G1JuCsJvy0J3zJULTJULTJULTJULTJULRL/4SAJT6icJOFE5SoJn6BykoQrlSeS8C0qTyThLpWTJDyhcpKEu1SeSMKJytVQtchQtchQtchQtchQtciLH6g8kYQnknCl8kQSnlC5SsITKk8k4bepXCXhROVbVD5B5a6hapGhapGhapGhapEXP0jCEyrfkoTfpvJEEu5SOUnCicq3JOFbknCicpKEE5W7hqpFhqpFhqpFhqpFhqpF4j8sk4S7VD4hCScqV0n4BJW7knCi8glJeJfKSRJOVK6GqkWGqkWGqkWGqkWGqkVe/CAJf53Ku5JwovKEyreo/LYknKjcpfLbhqpFhqpFhqpFhqpFhqpFXjyk8tuS8ITKSRKuVE6ScKJykoQTlbtUPiEJ71L5bUk4UblrqFpkqFpkqFpkqFpkqFrkxYck4V0q36RylYT/siR8SxJOVL5lqFpkqFpkqFpkqFrkxX9IEq5UnkjCtyThROUkCScqdyXhROWJJNyVhBOVkyScqFwNVYsMVYsMVYsMVYsMVYu8WCgJJyrfonKShLtUnlC5Kwm/TeWJJLxrqFpkqFpkqFpkqFpkqFrkxYeo/BUq70rCicoTKldJOEnCicpJEv4KlasknKicqLxrqFpkqFpkqFpkqFpkqFrkxUNJ+OuScKJylYQnknCicpfKSRKeULkrCScqJ0k4UTlJwpXKJyThROVqqFpkqFpkqFpkqFpkqFok/kPVEkPVIkPVIkPVIkPVIv8H9lc4jKcF21kAAAAASUVORK5CYII="/>
+  </g>
+</svg>
+

@@ -1,0 +1,13 @@
+# Time Caffe – Workers + statički fajlovi + API meni (KV)
+name = "time"
+compatibility_date = "2025-01-01"
+main = "worker.js"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+
+# KV za meni – u Dashboardu: Workers & Pages > KV > Create namespace "time-menu", pa zameni id ispod
+[[kv_namespaces]]
+binding = "MENU"
+id = "849786003c4341789008305b54abd5b2"

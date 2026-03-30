@@ -1,0 +1,636 @@
+/* Core layout & helpers – responsive
+   Default vertical scroll on the document (no overflow-y on html) so % heights / masonry layout stay stable.
+   Keep max-width: 100% on body — avoid 100vw (scrollbar gutter / horizontal overflow). */
+html {
+  /* auto: avoids fighting GSAP ScrollTrigger; hash jumps use scrollIntoView(smooth) in main.js */
+  scroll-behavior: auto;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+  /* Fixed header (~3.5–5rem): anchors and scrollIntoView land below it */
+  scroll-padding-top: 5.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #f5eee6;
+  overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Hide all visible scrollbar chrome globally while keeping scrolling. */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, #c9a36a, #f5eee6);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #2b211c;
+  border-bottom: 1px solid rgba(43, 33, 28, 0.12);
+  padding-bottom: 0.75rem;
+}
+
+.dark .mobile-link {
+  color: #f5eee6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#mobile-menu {
+  overflow: hidden;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #c9a36a, #f5eee6);
+  color: #2b211c;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgba(43, 33, 28, 0.2);
+  color: #2b211c;
+  background: rgba(245, 238, 230, 0.65);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 32px rgba(43, 33, 28, 0.2);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(245, 238, 230, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(43, 33, 28, 0.28);
+}
+
+.dark .btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f5eee6;
+  background: rgba(9, 9, 11, 0.16);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+}
+
+.dark .btn-ghost:hover {
+  background: rgba(249, 250, 251, 0.14);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.7);
+}
+
+.glass-card {
+  position: relative;
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.55),
+      transparent 60%
+    ),
+    rgba(245, 238, 230, 0.72);
+  border-radius: 1.75rem;
+}
+
+.dark .glass-card {
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.12),
+      transparent 60%
+    ),
+    rgba(22, 18, 14, 0.92);
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 10, 7, 0.75);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  color: #f5eee6;
+  outline: none;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, transform 0.1s ease;
+}
+
+.input-field::placeholder {
+  color: rgba(245, 238, 230, 0.5);
+}
+
+.input-field:focus {
+  border-color: #c9a36a;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+.input-field:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(249, 250, 251, 0.18);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5eee6;
+  background: rgba(15, 10, 7, 0.85);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease, border-color 0.15s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.75);
+  background: rgba(249, 250, 251, 0.08);
+  border-color: rgba(249, 250, 251, 0.3);
+}
+
+/* Gallery grid – in CSS (not Tailwind) so layout works with file://, CDN order, and cached HTML. */
+.masonry-grid {
+  display: grid;
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Gallery – identical 3:4 tiles; img uses object-fit:cover inside a fixed ratio box. */
+.gallery-item {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background: rgba(15, 10, 7, 0.06);
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: left;
+  transform-origin: center center;
+  isolation: isolate;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.dark .gallery-item {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Standalone galerija.html – visible frame + hover (index section uses .gallery-no-lightbox) */
+.masonry-grid:not(.gallery-no-lightbox) > .gallery-item {
+  border: 1px solid rgba(43, 33, 28, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.38);
+}
+
+.dark .masonry-grid:not(.gallery-no-lightbox) > .gallery-item {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+}
+
+.gallery-no-lightbox .gallery-item {
+  cursor: default;
+  border: 1px solid rgba(15, 10, 7, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark .gallery-no-lightbox .gallery-item {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.04);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+  z-index: 0;
+  pointer-events: none;
+  image-rendering: auto;
+}
+
+/* Light sweep on hover / focus */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  background-position: 130% 0;
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.35s ease;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 30% 15%,
+    rgba(255, 255, 255, 0.2),
+    transparent 50%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:is(:hover, :focus-visible) {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(201, 163, 106, 0.9);
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 163, 106, 0.35),
+    0 0 28px rgba(201, 163, 106, 0.12);
+}
+
+.gallery-item:is(:hover, :focus-visible) img {
+  transform: scale(1.12);
+  filter: saturate(1.12) contrast(1.05) brightness(1.03);
+}
+
+.gallery-item:is(:hover, :focus-visible)::before {
+  opacity: 1;
+  animation: gallery-shimmer 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gallery-item:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+/* No outline: it clips inside overflow:hidden; :is(:focus-visible) uses box-shadow above */
+
+@keyframes gallery-shimmer {
+  0% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -130% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item,
+  .gallery-item img,
+  .gallery-item::before,
+  .gallery-item::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .gallery-item:is(:hover, :focus-visible) {
+    transform: translateY(-2px);
+  }
+
+  .gallery-item:is(:hover, :focus-visible) img {
+    transform: scale(1.05);
+    filter: saturate(1.03);
+  }
+
+  .gallery-item:is(:hover, :focus-visible)::before {
+    animation: none;
+    opacity: 0.35;
+    background-position: 50% 0;
+  }
+}
+
+/* Scroll indicator animation */
+.scroll-line {
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Reveal animations base (GSAP enhances) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.about-card {
+  border-radius: 1.5rem;
+  padding: 1.4rem 1.3rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(15, 10, 7, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.dark .about-card {
+  background: rgba(15, 10, 7, 0.9);
+  border-color: rgba(249, 250, 251, 0.08);
+}
+
+/* Section transitions: long fade at top and bottom */
+.section-melt {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-melt::before,
+.section-melt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 140px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-melt::before {
+  top: -1px;
+  background: linear-gradient(to bottom, var(--melt-top, transparent), transparent);
+}
+
+.section-melt::after {
+  bottom: -1px;
+  background: linear-gradient(to top, var(--melt-bottom, transparent), transparent);
+}
+
+.section-melt > * {
+  position: relative;
+  z-index: 2;
+}
+
+#hero {
+  --melt-top: rgba(248, 241, 233, 0.95);
+  --melt-bottom: rgba(234, 216, 196, 0.88);
+}
+
+#onama {
+  --melt-top: rgba(234, 216, 196, 0.9);
+  --melt-bottom: rgba(228, 207, 179, 0.78);
+}
+
+#meni {
+  --melt-top: rgba(228, 207, 179, 0.82);
+  --melt-bottom: rgba(236, 219, 199, 0.76);
+}
+
+#galerija {
+  --melt-top: rgba(236, 219, 199, 0.82);
+  --melt-bottom: rgba(226, 204, 176, 0.8);
+}
+
+#lokacija {
+  --melt-top: rgba(226, 204, 176, 0.84);
+  --melt-bottom: rgba(204, 183, 157, 0.82);
+}
+
+.dark #hero {
+  --melt-top: rgba(32, 24, 18, 0.95);
+  --melt-bottom: rgba(33, 24, 18, 0.86);
+}
+
+.dark #onama {
+  --melt-top: rgba(33, 24, 18, 0.9);
+  --melt-bottom: rgba(42, 31, 24, 0.82);
+}
+
+/* Strong, smooth blend exactly at Hero -> O nama boundary */
+#hero.section-melt::after {
+  display: none;
+}
+
+#onama.section-melt::before {
+  display: none;
+}
+
+.dark #hero.section-melt::after {
+  display: none;
+}
+
+/* Hero/Onama seam: rely on matching base gradients only */
+#hero.section-melt::before {
+  display: none;
+}
+
+.dark #hero.section-melt::before {
+  display: none;
+}
+
+/* Matching transition on Hero top edge (header -> hero) */
+#hero.section-melt::before {
+  height: 260px;
+  background: linear-gradient(
+    to bottom,
+    rgba(217, 193, 163, 0.94) 0%,
+    rgba(199, 168, 132, 0.62) 44%,
+    rgba(217, 193, 163, 0) 100%
+  );
+}
+
+.dark #hero.section-melt::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(31, 23, 19, 0.98) 0%,
+    rgba(26, 19, 15, 0.76) 44%,
+    rgba(31, 23, 19, 0) 100%
+  );
+}
+
+/* Keep layout natural; blend comes from Hero fade only */
+#onama {
+  margin-top: -2px;
+  padding-top: calc(5rem + 2px);
+}
+
+.dark #onama {
+  margin-top: -4px;
+  padding-top: calc(5rem + 4px);
+}
+
+.dark #meni {
+  --melt-top: rgba(42, 31, 24, 0.85);
+  --melt-bottom: rgba(38, 28, 21, 0.82);
+}
+
+.dark #galerija {
+  --melt-top: rgba(38, 28, 21, 0.84);
+  --melt-bottom: rgba(27, 20, 15, 0.84);
+}
+
+.dark #lokacija {
+  --melt-top: rgba(27, 20, 15, 0.86);
+  --melt-bottom: rgba(19, 14, 12, 0.88);
+}
+
+/* Page transition overlay */
+#page-transition {
+  transition: opacity 0.45s ease;
+}
+
+/* Utility for admin tables reused in dashboard */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(15, 10, 7, 0.08);
+}
+
+.table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(15, 10, 7, 0.6);
+}
+
+.dark .table th,
+.dark .table td {
+  border-color: rgba(249, 250, 251, 0.08);
+}
+
+/* Hero pozadina */
+.hero-bg {
+  background: radial-gradient(
+      circle at 14% 10%,
+      rgba(201, 163, 106, 0.24),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(217, 195, 163, 0.28),
+      transparent 44%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(201, 163, 106, 0.12),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #f3e8da 0%, #ead8c2 45%, #d0b085 78%, #bea076 100%);
+}
+
+.dark .hero-bg {
+  background: linear-gradient(180deg, #1f1713 0%, #17110e 52%, #19120e 78%, #211812 100%);
+}
+

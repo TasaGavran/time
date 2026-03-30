@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preusmjeravanje… | Time Caffe</title>
+  <script>
+    (function () {
+      var api = typeof location !== "undefined" && location.origin ? location.origin + "/api/settings" : "/api/settings";
+      fetch(api)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var base = location.origin || "";
+          var path = (data && data.qr_target === "menu") ? "/meni" : "/";
+          location.replace(base + path);
+        })
+        .catch(function () {
+          location.replace(location.origin ? location.origin + "/" : "/");
+        });
+    })();
+  </script>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #2B211C; color: #F5EEE6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    p { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <p>Preusmjeravanje…</p>
+</body>
+</html>

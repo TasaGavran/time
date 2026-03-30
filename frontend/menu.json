@@ -1,0 +1,13 @@
+[
+  { "name": "Espresso", "description": "Klasičan kratki espresso sa bogatom cremom.", "price": 150, "category": "Kafa" },
+  { "name": "Cappuccino", "description": "Espresso sa penom od mleka.", "price": 200, "category": "Espresso pića" },
+  { "name": "Cold latte", "description": "Hladni latte sa ledom.", "price": 260, "category": "Espresso pića" },
+  { "name": "Hot latte", "description": "Topao latte sa kremastom penom.", "price": 260, "category": "Espresso pića" },
+  { "name": "Ice coffee", "description": "Hladna kafa sa ledom.", "price": 260, "category": "Osvežavajuća pića" },
+  { "name": "Instant coffee", "description": "Instant kafa po izboru – vruća ili hladna.", "price": 220, "category": "Kafa" },
+  { "name": "Choco cookie", "description": "Dodatak ukusa – čoko keks.", "price": 50, "category": "Ukusi" },
+  { "name": "Pečeni lešnik", "description": "Dodatak ukusa – pečeni lešnik.", "price": 50, "category": "Ukusi" },
+  { "name": "Karamela", "description": "Dodatak ukusa – karamela.", "price": 50, "category": "Ukusi" },
+  { "name": "Vanila", "description": "Dodatak ukusa – vanila.", "price": 50, "category": "Ukusi" },
+  { "name": "Kokos", "description": "Dodatak ukusa – kokos.", "price": 50, "category": "Ukusi" }
+]

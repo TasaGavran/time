@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover"
+    />
+    <title>Kontakt | Time Caffe</title>
+    <meta
+      name="description"
+      content="Kontaktirajte Time Caffe u Jagodini – telefon, e-pošta, adresa i radno vreme."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: "#2B211C",
+              coffee: "#4B3425",
+              latte: "#D9C3A3",
+              cream: "#F5EEE6",
+              gold: "#C9A36A",
+            },
+            fontFamily: {
+              display: ["Poppins", "system-ui", "sans-serif"],
+              body: ["DM Sans", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("timecaffe-theme");
+          if (stored === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (_) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=22" />
+  </head>
+  <body
+    class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full overflow-x-hidden dark:bg-espresso dark:text-cream min-h-screen flex flex-col"
+  >
+    <div
+      id="page-transition"
+      class="pointer-events-none fixed inset-0 z-40 bg-espresso opacity-0"
+    ></div>
+    <script>function hideOverlay(){var o=document.getElementById("page-transition");if(o)o.style.opacity="0";}hideOverlay();document.addEventListener("pageshow",hideOverlay);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")hideOverlay();});document.addEventListener("DOMContentLoaded",hideOverlay);</script>
+
+    <header
+      class="sticky top-0 z-20 border-b border-espresso/15 bg-cream/88 backdrop-blur dark:border-[#3a2c23]/50 dark:bg-[#1f1713]/90"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6"
+      >
+        <a href="./index.html" class="flex items-center gap-3">
+          <span
+            class="font-display text-sm font-semibold tracking-wide text-espresso dark:text-cream"
+            >Time Caffe</span
+          >
+        </a>
+        <button
+          id="theme-toggle"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-espresso/5 text-espresso shadow-md shadow-black/10 transition-colors hover:bg-espresso/10 dark:border-white/10 dark:bg-white/5 dark:text-gold dark:shadow-black/50 dark:hover:bg-white/10"
+          aria-label="Promeni temu"
+        >
+          <span id="theme-icon" class="text-lg">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 bg-gradient-to-b from-[#f8f1e9] via-cream to-[#e6d4c1] pb-0 pt-10 dark:bg-gradient-to-b dark:from-[#1f1713] dark:via-espresso dark:to-[#17110e]">
+      <section class="mx-auto max-w-6xl px-4 md:px-6">
+        <header class="mb-8 md:mb-10">
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.28em] text-gold"
+          >
+            Kontakt
+          </p>
+          <h1
+            class="mt-3 font-display text-3xl font-semibold tracking-tight text-espresso dark:text-cream md:text-4xl"
+          >
+            Uvek smo tu za vaša pitanja.
+          </h1>
+          <p
+            class="mt-3 max-w-2xl text-sm text-espresso/80 dark:text-cream/80"
+          >
+            Pišite nam, pozovite nas ili nas posetite u Time Caffe-u u
+            Jagodini. Rado ćemo pomoći oko rezervacija, događaja ili posebnih
+            želja.
+          </p>
+        </header>
+
+        <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-start">
+          <div class="space-y-6">
+            <div
+              class="rounded-2xl border border-espresso/10 bg-white/75 p-5 shadow-lg shadow-black/10 backdrop-blur dark:border-white/10 dark:bg-espresso/90"
+            >
+              <h2 class="text-sm font-semibold text-espresso dark:text-cream">
+                Kontakt podaci
+              </h2>
+              <div class="mt-3 space-y-2 text-sm text-espresso/80 dark:text-cream/80">
+                <p>
+                  <span class="font-medium text-gold">Telefon:</span><br />
+                  064 019 0460
+                </p>
+                <p>
+                  <span class="font-medium text-gold">E-pošta:</span><br />
+                  info@timecaffe.rs
+                </p>
+                <p>
+                  <span class="font-medium text-gold">Adresa:</span><br />
+                  Knjeginje Milice 76/1, Jagodina, Srbija
+                </p>
+                <p>
+                  <span class="font-medium text-gold">Radno vreme:</span><br />
+                  Pon – Ned: 08:00 – 00:00
+                </p>
+                <p class="pt-2 text-espresso/90 dark:text-cream/90">
+                  Za rezervaciju stola pozovite nas na navedeni broj.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="rounded-2xl border border-espresso/10 bg-white/75 p-5 shadow-lg shadow-black/10 backdrop-blur dark:border-white/10 dark:bg-espresso/90"
+            >
+              <h2 class="text-sm font-semibold text-espresso dark:text-cream">
+                Društvene mreže
+              </h2>
+              <p class="mt-3 text-sm text-espresso/80 dark:text-cream/80">
+                Pratite nas za dnevne preporuke, nove ukuse i atmosferu iz Time
+                Caffe-a.
+              </p>
+              <div class="mt-4 flex items-center gap-3">
+                <a href="#" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-white text-espresso transition-colors hover:border-gold hover:bg-gold hover:text-espresso dark:border-white/20 dark:bg-espresso/60 dark:text-cream dark:hover:bg-gold dark:hover:text-espresso" aria-label="Instagram">
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-espresso/20 bg-white text-espresso transition-colors hover:border-gold hover:bg-gold hover:text-espresso dark:border-white/20 dark:bg-espresso/60 dark:text-cream dark:hover:bg-gold dark:hover:text-espresso" aria-label="Facebook">
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="overflow-hidden rounded-3xl border border-espresso/15 bg-white/70 shadow-lg shadow-black/20 dark:border-white/10 dark:bg-espresso"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2854.41171040937!2d21.260075!3d43.976672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4756c4143ea59c9f%3A0x4f3c95683f6940db!2sTime%20Caffe!5e0!3m2!1ssr!2srs!4v1700000000000!5m2!1ssr!2srs"
+              width="100%"
+              height="360"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Time Caffe na mapi"
+            ></iframe>
+            <p class="mt-2 text-center text-[11px] text-espresso/50 dark:text-cream/50">Ako mapa ne učitava, isključite blokator oglasa za ovaj sajt.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="-mt-px bg-[#e6d4c1] py-6 text-espresso dark:bg-[#17110e] dark:text-cream">
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-xs text-espresso/70 dark:text-cream/70 md:flex-row md:px-6"
+      >
+        <p>© 2026 Time Caffe – Sva prava zadržana</p>
+        <div class="flex items-center gap-2">
+          <p>Izradio: Atanasios Aleksopulos</p>
+          <a href="https://instagram.com/tasa.59" target="_blank" rel="noopener noreferrer" class="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-espresso/20 bg-white px-3 text-[11px] font-medium text-espresso hover:border-gold hover:bg-gold hover:text-espresso dark:border-white/20 dark:bg-espresso/70 dark:text-cream dark:hover:bg-gold dark:hover:text-espresso" aria-label="Instagram profil @tasa.59">@tasa.59</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./main.js?v=10"></script>
+  </body>
+</html>
+
