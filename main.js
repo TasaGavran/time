@@ -6,19 +6,20 @@ const API_BASE_URL =
     ? "http://localhost:4000/api"
     : `${typeof window !== "undefined" ? window.location.origin : ""}/api`;
 
-// Fallback meni kada backend nije dostupan (isti kao u meni.html)
+// Fallback meni kada backend nije dostupan (usklađeno sa menu.json)
 const FALLBACK_MENU = [
-  { name: "Espresso", description: "Klasičan kratki espresso sa bogatom cremom.", price: 150, category: "Kafa" },
-  { name: "Cappuccino", description: "Espresso sa penom od mleka.", price: 200, category: "Espresso pića" },
-  { name: "Cold latte", description: "Hladni latte sa ledom.", price: 260, category: "Espresso pića" },
-  { name: "Hot latte", description: "Topao latte sa kremastom penom.", price: 260, category: "Espresso pića" },
-  { name: "Ice coffee", description: "Hladna kafa sa ledom.", price: 260, category: "Osvežavajuća pića" },
-  { name: "Instant coffee", description: "Instant kafa po izboru – vruća ili hladna.", price: 220, category: "Kafa" },
-  { name: "Choco cookie", description: "Dodatak ukusa – čoko keks.", price: 50, category: "Ukusi" },
-  { name: "Pečeni lešnik", description: "Dodatak ukusa – pečeni lešnik.", price: 50, category: "Ukusi" },
-  { name: "Karamela", description: "Dodatak ukusa – karamela.", price: 50, category: "Ukusi" },
-  { name: "Vanila", description: "Dodatak ukusa – vanila.", price: 50, category: "Ukusi" },
-  { name: "Kokos", description: "Dodatak ukusa – kokos.", price: 50, category: "Ukusi" },
+  { name: "Turska kafa", description: "", price: 140, category: "Kafa" },
+  { name: "Turska kafa sa mlekom", description: "", price: 150, category: "Kafa" },
+  { name: "Turska kafa sa šlagom", description: "", price: 160, category: "Kafa" },
+  { name: "Espresso", description: "", price: 180, category: "Kafa" },
+  { name: "Espresso sa mlekom", description: "", price: 190, category: "Kafa" },
+  { name: "Espresso sa šlagom", description: "", price: 210, category: "Kafa" },
+  { name: "Espresso dupli", description: "", price: 280, category: "Kafa" },
+  { name: "Cappucino", description: "", price: 210, category: "Kafa" },
+  { name: "Macchiato", description: "", price: 190, category: "Kafa" },
+  { name: "Latte macchiato", description: "", price: 240, category: "Kafa" },
+  { name: "Moka kafa", description: "", price: 240, category: "Kafa" },
+  { name: "Ice kafa", description: "", price: 270, category: "Kafa" },
 ];
 
 function initTheme() {
@@ -96,6 +97,11 @@ function initMobileMenu() {
   }
 
   toggle.addEventListener("click", () => setState(!open));
+
+  const closeBtn = document.getElementById("mobile-menu-close");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => setState(false));
+  }
 
   menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => setState(false));
@@ -321,6 +327,8 @@ async function initMenuPreview() {
   const container = document.getElementById("menu-preview");
   const status = document.getElementById("menu-preview-status");
   if (!container || !status) return;
+  /* Početna: ručno ubačene stavke u HTML (#menu-preview[data-static]) */
+  if (container.dataset.static === "true") return;
 
   renderMenuCards(container, FALLBACK_MENU.slice(0, 6), status);
 

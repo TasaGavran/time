@@ -30,7 +30,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Poppins:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=25" />
+    <link rel="stylesheet" href="/styles.css?v=26" />
     <style>
       .admin-btn-edit { background: rgba(201,163,106,0.25); border: 1px solid rgba(201,163,106,0.6); border-radius: 0.5rem; padding: 0.35rem 0.75rem; font-size: 0.8rem; color: #4B3425; transition: background 0.2s, color 0.2s; }
       .admin-btn-edit:hover { background: #C9A36A; color: #2B211C; }
@@ -92,11 +92,22 @@
             <select id="add-category" required class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream">
               <option value="">Izaberi kategoriju</option>
               <option value="Kafa">Kafa</option>
-              <option value="Espresso pića">Espresso pića</option>
-              <option value="Osvežavajuća pića">Osvežavajuća pića</option>
-              <option value="Čajevi">Čajevi</option>
-              <option value="Deserti">Deserti</option>
-              <option value="Ukusi">Ukusi</option>
+              <option value="Topli i hladni napici">Topli i hladni napici</option>
+              <option value="Gazirani sokovi">Gazirani sokovi</option>
+              <option value="Negazirani sokovi">Negazirani sokovi</option>
+              <option value="Prirodni sokovi">Prirodni sokovi</option>
+              <option value="Vina">Vina</option>
+              <option value="Piva">Piva</option>
+              <option value="Žestoka pića">Žestoka pića</option>
+              <option value="Viski">Viski</option>
+              <option value="Likeri">Likeri</option>
+              <option value="Vode">Vode</option>
+              <option value="Dodaci">Dodaci</option>
+              <option value="Energetska pića">Energetska pića</option>
+              <option value="Specijaliteti">Specijaliteti</option>
+              <option value="Hausbrandt Frappe">Hausbrandt Frappe</option>
+              <option value="Frappe">Frappe</option>
+              <option value="Kokteli (La Casa de Papel)">Kokteli (La Casa de Papel)</option>
               <option value="Ostalo">Ostalo</option>
             </select>
           </div>
@@ -251,7 +262,26 @@
           return div.innerHTML;
         }
 
-        var CATEGORIES = ["Kafa", "Espresso pića", "Osvežavajuća pića", "Čajevi", "Deserti", "Ukusi", "Ostalo"];
+        var CATEGORIES = [
+          "Kafa",
+          "Topli i hladni napici",
+          "Gazirani sokovi",
+          "Negazirani sokovi",
+          "Prirodni sokovi",
+          "Vina",
+          "Piva",
+          "Žestoka pića",
+          "Viski",
+          "Likeri",
+          "Vode",
+          "Dodaci",
+          "Energetska pića",
+          "Specijaliteti",
+          "Hausbrandt Frappe",
+          "Frappe",
+          "Kokteli (La Casa de Papel)",
+          "Ostalo",
+        ];
         function categorySelectOptions(selected) {
           var list = (selected && CATEGORIES.indexOf(selected) >= 0) ? CATEGORIES : ((selected ? [selected] : []).concat(CATEGORIES));
           return list.map(function (c) {

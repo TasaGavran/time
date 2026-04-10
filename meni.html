@@ -9,7 +9,7 @@
     <title>Naš meni | Time Caffe</title>
     <meta
       name="description"
-      content="Istražite kompletan meni Time Caffe-a u Jagodini – kafa, espresso pića, čajevi, kokteli, osvežavajuća pića i deserti."
+      content="Kompletan meni Time Caffe Jagodina – kafa, topli i hladni napici, sokovi, vina, piva, žestoka pića, viski, likeri i specijaliteti."
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,7 +36,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Poppins:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=25" />
+    <link rel="stylesheet" href="/styles.css?v=26" />
   </head>
   <body
     class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full dark:bg-espresso dark:text-cream"
@@ -101,33 +101,11 @@
         <div
           class="mb-6 flex flex-wrap items-center justify-between gap-4 text-xs"
         >
-          <div class="flex flex-wrap items-center gap-3">
-            <button
-              class="filter-chip active"
-              data-category="all"
-            >
-              Sve
-            </button>
-            <button class="filter-chip" data-category="Kafa">Kafa</button>
-            <button class="filter-chip" data-category="Espresso pića">
-              Espresso pića
-            </button>
-            <button class="filter-chip" data-category="Čajevi">
-              Čajevi
-            </button>
-            <button class="filter-chip" data-category="Osvežavajuća pića">
-              Osvežavajuća pića
-            </button>
-            <button class="filter-chip" data-category="Kokteli">
-              Kokteli
-            </button>
-            <button class="filter-chip" data-category="Deserti">
-              Deserti
-            </button>
-            <button class="filter-chip" data-category="Ukusi">
-              Ukusi
-            </button>
-          </div>
+          <div
+            id="menu-filter-chips"
+            class="flex flex-wrap items-center gap-3"
+            aria-label="Filter kategorija menija"
+          ></div>
           <p
             id="menu-count"
             class="text-[11px] uppercase tracking-[0.18em] text-espresso/60 dark:text-cream/60"
@@ -144,8 +122,8 @@
     </main>
 
     <!-- meni.js prvi da meni uvek radi; main.js za temu, navigaciju itd. -->
-    <script src="/meni.js?v=1"></script>
-    <script src="/main.js?v=13"></script>
+    <script src="/meni.js?v=17"></script>
+    <script src="/main.js?v=16"></script>
 
     <style>
       .filter-chip {

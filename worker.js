@@ -7,17 +7,930 @@
  */
 
 const DEFAULT_MENU = [
-  { name: "Espresso", description: "Klasičan kratki espresso sa bogatom cremom.", price: 150, category: "Kafa" },
-  { name: "Cappuccino", description: "Espresso sa penom od mleka.", price: 200, category: "Espresso pića" },
-  { name: "Cold latte", description: "Hladni latte sa ledom.", price: 260, category: "Espresso pića" },
-  { name: "Hot latte", description: "Topao latte sa kremastom penom.", price: 260, category: "Espresso pića" },
-  { name: "Ice coffee", description: "Hladna kafa sa ledom.", price: 260, category: "Osvežavajuća pića" },
-  { name: "Instant coffee", description: "Instant kafa po izboru – vruća ili hladna.", price: 220, category: "Kafa" },
-  { name: "Choco cookie", description: "Dodatak ukusa – čoko keks.", price: 50, category: "Ukusi" },
-  { name: "Pečeni lešnik", description: "Dodatak ukusa – pečeni lešnik.", price: 50, category: "Ukusi" },
-  { name: "Karamela", description: "Dodatak ukusa – karamela.", price: 50, category: "Ukusi" },
-  { name: "Vanila", description: "Dodatak ukusa – vanila.", price: 50, category: "Ukusi" },
-  { name: "Kokos", description: "Dodatak ukusa – kokos.", price: 50, category: "Ukusi" },
+  {
+    "name": "Turska kafa",
+    "price": 140,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Turska kafa sa mlekom",
+    "price": 150,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Turska kafa sa šlagom",
+    "price": 160,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Espresso",
+    "price": 180,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Espresso sa mlekom",
+    "price": 190,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Espresso sa šlagom",
+    "price": 210,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Espresso dupli",
+    "price": 280,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Cappucino",
+    "price": 210,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Macchiato",
+    "price": 190,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Latte macchiato",
+    "price": 240,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Moka kafa",
+    "price": 240,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Ice kafa",
+    "price": 270,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Nes kafa",
+    "price": 220,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Nes kafa sa šlagom",
+    "price": 250,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Nescafé cappuccino ukusi",
+    "price": 240,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Chocofredo",
+    "price": 220,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Cappuccino \"La Time\"",
+    "price": 240,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Time Moka late",
+    "price": 270,
+    "category": "Kafa",
+    "description": ""
+  },
+  {
+    "name": "Topla čokolada",
+    "price": 280,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Topla čokolada sa šlagom",
+    "price": 310,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Topla čokolada sa plazmom",
+    "price": 350,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Topla čokolada sa plazmom i šlagom",
+    "price": 370,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Milk šejk",
+    "price": 290,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Neskvik",
+    "price": 210,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Čaj milford",
+    "price": 180,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Mleko 0,2",
+    "price": 90,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Voćni kompot (jabuka, višnja)",
+    "price": 220,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Plazma šejk",
+    "price": 310,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Plazma – cheesecake",
+    "price": 350,
+    "category": "Topli i hladni napici",
+    "description": ""
+  },
+  {
+    "name": "Hausbrandt Frappe — kafa",
+    "price": 290,
+    "category": "Hausbrandt Frappe",
+    "description": "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić. Hausbrandt."
+  },
+  {
+    "name": "Hausbrandt Frappe — šumsko voće",
+    "price": 290,
+    "category": "Hausbrandt Frappe",
+    "description": "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić. Hausbrandt."
+  },
+  {
+    "name": "Frappe — čokolada",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — vanila",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — kokos",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — lešnik",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — banana",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — vanila Plazma",
+    "price": 350,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Frappe — jagoda",
+    "price": 290,
+    "category": "Frappe",
+    "description": ""
+  },
+  {
+    "name": "Coca cola",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Fanta",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Sprite",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Schweppes bitter lemon",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Schweppes tonik",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Schweppes tangerina",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Orangina",
+    "price": 280,
+    "category": "Gazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Cocta",
+    "price": 240,
+    "category": "Gazirani sokovi",
+    "description": "0,275 l"
+  },
+  {
+    "name": "Mali sok",
+    "price": 160,
+    "category": "Gazirani sokovi",
+    "description": "0,2 l"
+  },
+  {
+    "name": "Limona",
+    "price": 270,
+    "category": "Gazirani sokovi",
+    "description": "0,2 l"
+  },
+  {
+    "name": "Next sokovi",
+    "price": 240,
+    "category": "Negazirani sokovi",
+    "description": "0,2 l"
+  },
+  {
+    "name": "Cedevita",
+    "price": 190,
+    "category": "Negazirani sokovi",
+    "description": "0,2 l"
+  },
+  {
+    "name": "Aloja sokovi",
+    "price": 280,
+    "category": "Negazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Bravo sokovi",
+    "price": 240,
+    "category": "Negazirani sokovi",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Limunada",
+    "price": 210,
+    "category": "Prirodni sokovi",
+    "description": ""
+  },
+  {
+    "name": "Ceđena narandža",
+    "price": 290,
+    "category": "Prirodni sokovi",
+    "description": ""
+  },
+  {
+    "name": "Time voćni koktel",
+    "price": 290,
+    "category": "Prirodni sokovi",
+    "description": ""
+  },
+  {
+    "name": "Vitaminska bomba",
+    "price": 290,
+    "category": "Prirodni sokovi",
+    "description": ""
+  },
+  {
+    "name": "Vranac",
+    "price": 280,
+    "category": "Vina",
+    "description": "0,187 l"
+  },
+  {
+    "name": "Chardonay",
+    "price": 280,
+    "category": "Vina",
+    "description": "0,187 l"
+  },
+  {
+    "name": "Rose",
+    "price": 280,
+    "category": "Vina",
+    "description": "0,187 l"
+  },
+  {
+    "name": "Grand sud chardonnay",
+    "price": 370,
+    "category": "Vina",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Grand sud merlot",
+    "price": 370,
+    "category": "Vina",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Somersby",
+    "price": 290,
+    "category": "Vina",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Šampanjac Cinciano Granset",
+    "price": 1900,
+    "category": "Vina",
+    "description": ""
+  },
+  {
+    "name": "Tuborg",
+    "price": 270,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Carlsberg",
+    "price": 280,
+    "category": "Piva",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Erdinger",
+    "price": 390,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Tamni Budweiser",
+    "price": 280,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "San Miguel",
+    "price": 380,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Budweiser točeno",
+    "price": 270,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Budweiser točeno",
+    "price": 340,
+    "category": "Piva",
+    "description": "0,5 l"
+  },
+  {
+    "name": "Lav točeno",
+    "price": 230,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Lav točeno",
+    "price": 290,
+    "category": "Piva",
+    "description": "0,5 l"
+  },
+  {
+    "name": "Kronenburg",
+    "price": 290,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Radler Sprite beer",
+    "price": 280,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Radler Fanta beer",
+    "price": 280,
+    "category": "Piva",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Vinjak",
+    "price": 170,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Vodka",
+    "price": 170,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Pelinkovac",
+    "price": 150,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Gorki list",
+    "price": 190,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Stomaklija",
+    "price": 150,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Viljamovka",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Kajsija",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Dunja",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Šljiva",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Lozovača",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Gin",
+    "price": 170,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Stock",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Stock XO",
+    "price": 320,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Puškin vodka",
+    "price": 210,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Keglevich vodka",
+    "price": 190,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Tekila",
+    "price": 220,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jägermeister",
+    "price": 220,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Cepelin",
+    "price": 180,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Mastika",
+    "price": 190,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Martini",
+    "price": 230,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Rum Bacardi",
+    "price": 230,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Courvoisier",
+    "price": 360,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Rum",
+    "price": 180,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Malibu",
+    "price": 260,
+    "category": "Žestoka pića",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jack Daniels",
+    "price": 250,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jack Gentleman",
+    "price": 350,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jack Honey",
+    "price": 250,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jack Single Barrel",
+    "price": 380,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jonnie Walker",
+    "price": 220,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Balantines",
+    "price": 220,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Chivas",
+    "price": 350,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Teacher's",
+    "price": 220,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jim Beam",
+    "price": 220,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Kanadian klub viski",
+    "price": 210,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Kilbeggan irski viski",
+    "price": 210,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Famous Grouse",
+    "price": 210,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jim Beam Black",
+    "price": 280,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Jameson",
+    "price": 240,
+    "category": "Viski",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Vermut",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,05 l"
+  },
+  {
+    "name": "Campari",
+    "price": 230,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Baileys",
+    "price": 220,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Stock krema",
+    "price": 220,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Sambuca Stock",
+    "price": 220,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Amareto",
+    "price": 220,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Stock vermut",
+    "price": 230,
+    "category": "Likeri",
+    "description": "0,05 l"
+  },
+  {
+    "name": "Aperol",
+    "price": 220,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Liker višnja",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Maraschino liqueur",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Pina colada",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Meduška",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Liker čokolada",
+    "price": 210,
+    "category": "Likeri",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Rosa gazirana",
+    "price": 160,
+    "category": "Vode",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Rosa negazirana",
+    "price": 160,
+    "category": "Vode",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Romerquelle voda",
+    "price": 210,
+    "category": "Vode",
+    "description": "0,33 l"
+  },
+  {
+    "name": "Mleko za kafu",
+    "price": 10,
+    "category": "Dodaci",
+    "description": ""
+  },
+  {
+    "name": "Bademovo (posno) mleko za kafu",
+    "price": 20,
+    "category": "Dodaci",
+    "description": ""
+  },
+  {
+    "name": "Med",
+    "price": 30,
+    "category": "Dodaci",
+    "description": ""
+  },
+  {
+    "name": "Šlag",
+    "price": 30,
+    "category": "Dodaci",
+    "description": ""
+  },
+  {
+    "name": "Plazma",
+    "price": 60,
+    "category": "Dodaci",
+    "description": ""
+  },
+  {
+    "name": "Voćni sirup",
+    "price": 90,
+    "category": "Dodaci",
+    "description": "0,03 l"
+  },
+  {
+    "name": "Ultra energy",
+    "price": 240,
+    "category": "Energetska pića",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Red Bull",
+    "price": 320,
+    "category": "Energetska pića",
+    "description": "0,25 l"
+  },
+  {
+    "name": "Crna čokolada",
+    "price": 330,
+    "category": "Specijaliteti",
+    "description": "Crna čokolada, sirup, mleko. Ukusi: Choco Cookie, Pečeni lešnik, Karamela, Vanila, Višnja, Kokos, Bundeva, Pistać."
+  },
+  {
+    "name": "Bela čokolada",
+    "price": 330,
+    "category": "Specijaliteti",
+    "description": "Bela čokolada, sirup, mleko. Isti ukusi kao kod crne čokolade."
+  },
+  {
+    "name": "Homemade Lemonade",
+    "price": 300,
+    "category": "Specijaliteti",
+    "description": "Sirup, limunov sok, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
+  },
+  {
+    "name": "Ceđena narandža",
+    "price": 330,
+    "category": "Specijaliteti",
+    "description": "Sirup, ceđena narandža. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Kruška."
+  },
+  {
+    "name": "Homemade Iced Tea",
+    "price": 300,
+    "category": "Specijaliteti",
+    "description": "Baza čaja, voćni pire, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
+  },
+  {
+    "name": "Kuvano vino",
+    "price": 310,
+    "category": "Specijaliteti",
+    "description": "Sirup, crveno vino. Ukusi: Malina, Jagoda, Borovnica."
+  },
+  {
+    "name": "El Profesor",
+    "price": 470,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Breskva, borovnica, sok od narandže, vodka."
+  },
+  {
+    "name": "Tokio",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Jagoda, tropsko voće, sok od narandže, vodka."
+  },
+  {
+    "name": "Lisabon",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Breskva, zelena jabuka, Sprite, džin."
+  },
+  {
+    "name": "Rio",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Malina, kokos, Sprite, vodka."
+  },
+  {
+    "name": "Berlin",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Zelena menta, sok od jabuke, vodka."
+  },
+  {
+    "name": "Nairobi",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Borovnica, sok od šumskog voća, vodka."
+  },
+  {
+    "name": "Denver",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Jagoda, Sprite, vodka."
+  },
+  {
+    "name": "Stocholm",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Tropsko voće, mango, sok od narandže, džin."
+  },
+  {
+    "name": "Helsinki",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Limunada, zelena menta, džin."
+  },
+  {
+    "name": "Moscow",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Malina, bitter lemon, vodka."
+  },
+  {
+    "name": "Palermo",
+    "price": 370,
+    "category": "Kokteli (La Casa de Papel)",
+    "description": "Lubenica, tonik, džin."
+  }
 ];
 
 const ADMIN_HASH = "4adddf4287b79c7a279ea400ece0e779bc756ba71d4bad9e1a47cc740d63f013";

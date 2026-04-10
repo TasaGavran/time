@@ -822,40 +822,40 @@
     "description": "0,25 l"
   },
   {
-    "name": "Crna čokolada",
+    "name": "Crna čokolada (MONIN)",
     "price": 330,
-    "category": "Specijaliteti",
-    "description": "Crna čokolada, sirup, mleko. Ukusi: Choco Cookie, Pečeni lešnik, Karamela, Vanila, Višnja, Kokos, Bundeva, Pistać."
+    "category": "Specijaliteti (Monin)",
+    "description": "Crna čokolada, MONIN sirup, mleko. Ukusi: Choco Cookie, Pečeni lešnik, Karamela, Vanila, Višnja, Kokos, Bundeva, Pistać."
   },
   {
-    "name": "Bela čokolada",
+    "name": "Bela čokolada (MONIN)",
     "price": 330,
-    "category": "Specijaliteti",
-    "description": "Bela čokolada, sirup, mleko. Isti ukusi kao kod crne čokolade."
+    "category": "Specijaliteti (Monin)",
+    "description": "Bela čokolada, MONIN sirup, mleko. Isti ukusi kao kod crne čokolade."
   },
   {
     "name": "Homemade Lemonade",
     "price": 300,
-    "category": "Specijaliteti",
-    "description": "Sirup, limunov sok, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
+    "category": "Specijaliteti (Monin)",
+    "description": "MONIN sirup, limunov sok, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
   },
   {
-    "name": "Ceđena narandža",
+    "name": "Ceđena narandža (MONIN)",
     "price": 330,
-    "category": "Specijaliteti",
-    "description": "Sirup, ceđena narandža. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Kruška."
+    "category": "Specijaliteti (Monin)",
+    "description": "MONIN sirup, ceđena narandža. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Kruška."
   },
   {
     "name": "Homemade Iced Tea",
     "price": 300,
-    "category": "Specijaliteti",
-    "description": "Baza čaja, voćni pire, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
+    "category": "Specijaliteti (Monin)",
+    "description": "MONIN baza čaja, MONIN voćni pire, voda. Ukusi: Tropsko voće, Jagoda, Lubenica, Zelena menta, Kivi, Mango, Breskva, Zelena jabuka, Borovnica, Mandarina, Malina, Kruška."
   },
   {
     "name": "Kuvano vino",
     "price": 310,
-    "category": "Specijaliteti",
-    "description": "Sirup, crveno vino. Ukusi: Malina, Jagoda, Borovnica."
+    "category": "Specijaliteti (Monin)",
+    "description": "MONIN sirup, crveno vino. Ukusi: Malina, Jagoda, Borovnica."
   },
   {
     "name": "El Profesor",
