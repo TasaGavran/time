@@ -393,8 +393,8 @@
               >
                 <div class="aspect-[4/3] w-full shrink-0 overflow-hidden sm:aspect-[3/2]">
                   <img
-                    src="./assets/images/galerija3.png"
-                    alt="Kafa sa latte art u šoljicama Time Caffe"
+                    src="./assets/images/galerija3.jpg"
+                    alt="Bašta i ambijent Time Caffe kafića"
                     width="768"
                     height="1024"
                     class="h-full w-full object-cover"
