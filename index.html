@@ -7,6 +7,8 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover"
     />
     <meta name="theme-color" content="#2B211C" />
+    <link rel="icon" href="/assets/images/favicon-32.png" type="image/png" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
     <title>Time Caffe | Jagodina</title>
     <meta
       name="description"
@@ -74,7 +76,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <!-- Custom styles (relative URL works locally + Cloudflare; load last in head vs Tailwind inject) -->
-    <link rel="stylesheet" href="/styles.css?v=26" />
+    <link rel="stylesheet" href="/styles.css?v=27" />
   </head>
   <body
     class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full"
@@ -100,14 +102,18 @@
       <div
         class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 md:px-6 min-w-0"
       >
-        <a href="/" class="flex items-center gap-3">
-          <div class="leading-tight">
+        <a href="/" class="flex min-w-0 items-center gap-2.5 sm:gap-3">
+          <img
+            src="/assets/images/time-caffe-wordmark.png"
+            alt="Time Caffe"
+            width="392"
+            height="605"
+            decoding="async"
+            class="h-8 w-auto max-w-[min(200px,55vw)] shrink-0 object-contain object-left dark:invert sm:h-9 md:h-10"
+          />
+          <div class="leading-tight min-w-0">
             <span
-              class="block font-display text-lg font-semibold tracking-wide text-espresso dark:text-cream"
-              >Time Caffe</span
-            >
-            <span
-              class="block text-xs font-medium uppercase tracking-[0.2em] text-gold/80"
+              class="block text-[10px] font-medium uppercase tracking-[0.2em] text-espresso sm:text-xs dark:text-gold/80"
               >Jagodina</span
             >
           </div>
@@ -263,7 +269,7 @@
                 class="pointer-events-none absolute -bottom-16 right-0 h-40 w-40 rounded-full bg-coffee/30 blur-3xl"
               ></div>
 
-              <div class="relative space-y-5">
+              <div class="relative space-y-5 pb-4 sm:pb-5">
                 <h2
                   class="font-display text-lg font-semibold tracking-tight text-espresso dark:text-cream"
                 >
@@ -384,17 +390,6 @@
 
               <article class="about-card reveal-up" data-delay="0.3">
                 <h3 class="text-base font-semibold text-espresso dark:text-cream">
-                  Domaći deserti
-                </h3>
-                <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
-                  Uživajte u ponudi kolača, torti i sitnih zalogaja koji se
-                  savršeno slažu sa vašim omiljenim napitkom, pripremljeni u
-                  saradnji sa lokalnim poslastičarnicama.
-                </p>
-              </article>
-
-              <article class="about-card reveal-up" data-delay="0.45">
-                <h3 class="text-base font-semibold text-espresso dark:text-cream">
                   Pažljiva usluga
                 </h3>
                 <p class="mt-2 text-sm text-espresso/80 dark:text-cream/80">
@@ -402,6 +397,28 @@
                   vašu omiljenu kafu, da preporučimo novo piće i da svaki dolazak
                   u Time Caffe učinimo iskustvom kojem ćete se vraćati.
                 </p>
+              </article>
+
+              <article
+                class="about-card about-card--media reveal-up flex flex-col overflow-hidden"
+                data-delay="0.45"
+              >
+                <div class="aspect-[4/3] w-full shrink-0 overflow-hidden sm:aspect-[3/2]">
+                  <img
+                    src="/assets/images/galerija3.png"
+                    alt="Kafa sa latte art u šoljicama Time Caffe"
+                    width="768"
+                    height="1024"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3 class="text-base font-semibold text-espresso dark:text-cream">
+                    Letnja bašta u našem kafiću
+                  </h3>
+                </div>
               </article>
             </div>
 
@@ -508,6 +525,13 @@
             </article>
           </div>
 
+          <p
+            id="menu-preview-status"
+            class="mt-10 text-center text-xs text-espresso/60 dark:text-cream/60"
+          >
+            Tri izdvojene stavke iz našeg menija.
+          </p>
+
           <div
             class="reveal-up mt-10 rounded-2xl border border-gold/35 bg-[#ead8c4]/70 p-6 shadow-lg shadow-black/15 backdrop-blur dark:border-gold/25 dark:bg-[#1a130f]/75 dark:shadow-black/40 md:p-8"
           >
@@ -519,13 +543,6 @@
               80 din uz bilo koju poručenu kafu — uživaj u trenutku.
             </p>
           </div>
-
-          <p
-            id="menu-preview-status"
-            class="mt-6 text-center text-xs text-espresso/60 dark:text-cream/60"
-          >
-            Tri izdvojene stavke iz našeg menija.
-          </p>
         </div>
       </section>
 
@@ -559,8 +576,8 @@
             <!-- Slike se ne otvaraju u lightbox; hover animacija ostaje -->
             <div class="gallery-item">
               <img
-                src="/assets/images/galerija1.jpg"
-                alt="Koktel u staklu – Time Caffe"
+                src="/assets/images/galerija1.png"
+                alt="Topao napitak sa šlagom"
                 width="768"
                 height="1024"
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -570,8 +587,8 @@
             </div>
             <div class="gallery-item">
               <img
-                src="/assets/images/galerija2.jpg"
-                alt="Malina milkshake sa šlagom"
+                src="/assets/images/galerija2.png"
+                alt="Milkshake varijacije ispod loga Time Caffe"
                 width="768"
                 height="1024"
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -581,8 +598,8 @@
             </div>
             <div class="gallery-item">
               <img
-                src="/assets/images/galerija3.jpg"
-                alt="Espresso u šoljici"
+                src="/assets/images/galerija3.png"
+                alt="Kafa sa latte art u šoljicama Time Caffe"
                 width="768"
                 height="1024"
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -592,8 +609,8 @@
             </div>
             <div class="gallery-item">
               <img
-                src="/assets/images/galerija4.jpg"
-                alt="Topla čokolada i osvežavajuće piće"
+                src="/assets/images/galerija4.png"
+                alt="Voćni kokteli u karafama"
                 width="768"
                 height="1024"
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -603,8 +620,8 @@
             </div>
             <div class="gallery-item">
               <img
-                src="/assets/images/galerija5.jpg"
-                alt="Milkshake varijacije – Time Caffe"
+                src="/assets/images/galerija5.png"
+                alt="Koktel „Nairobi“ – La Casa de Papel specijalitet"
                 width="768"
                 height="1024"
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -706,9 +723,16 @@
       class="border-t border-espresso/15 bg-gradient-to-b from-[#ccb79d] via-[#dfcfbc] to-cream py-8 text-espresso backdrop-blur dark:border-black/40 dark:bg-gradient-to-b dark:from-[#17110e] dark:via-[#130f0c] dark:to-[#0f0b09] dark:text-cream"
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:flex-wrap md:items-start md:justify-between md:gap-x-8 md:gap-y-4 md:px-6 min-w-0">
-        <div class="flex min-w-0 items-center gap-3">
+        <div class="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+          <img
+            src="/assets/images/time-caffe-wordmark.png"
+            alt="Time Caffe"
+            width="392"
+            height="605"
+            decoding="async"
+            class="h-9 w-auto max-w-[220px] object-contain object-left dark:invert sm:h-10"
+          />
           <div class="leading-tight">
-            <p class="text-sm font-semibold">Time Caffe</p>
             <p class="text-xs text-espresso/70 dark:text-cream/70">Knjeginje Milice 76/1, Jagodina, Srbija</p>
           </div>
         </div>
@@ -725,7 +749,7 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <span>Kontakt: info@timecaffe.rs</span>
+            <span>Kontakt: duledenkic@gmail.com</span>
             <span class="hidden h-3 w-px bg-espresso/20 dark:bg-cream/20 md:block"></span>
             <span>Tel: 064 019 0460 · Za rezervaciju stola pozovite nas</span>
           </div>

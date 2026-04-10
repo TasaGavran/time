@@ -174,16 +174,16 @@
     "description": ""
   },
   {
-    "name": "Hausbrandt Frappe — kafa",
+    "name": "Frappe — kafa",
     "price": 290,
-    "category": "Hausbrandt Frappe",
-    "description": "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić. Hausbrandt."
+    "category": "Frappe",
+    "description": "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić."
   },
   {
-    "name": "Hausbrandt Frappe — šumsko voće",
+    "name": "Frappe — šumsko voće",
     "price": 290,
-    "category": "Hausbrandt Frappe",
-    "description": "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić. Hausbrandt."
+    "category": "Frappe",
+    "description": "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić."
   },
   {
     "name": "Frappe — čokolada",

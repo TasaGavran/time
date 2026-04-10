@@ -3,6 +3,49 @@
  */
 (function () {
   const API_BASE_URL = "http://localhost:4000/api";
+  /** Red filter čipova i prikaza „Sve” – usklađeno sa menijem */
+  var CATEGORY_ORDER = [
+    "Kafa",
+    "Frappe",
+    "Specijaliteti",
+    "Kokteli (La Casa de Papel)",
+    "Topli i hladni napici",
+    "Gazirani sokovi",
+    "Negazirani sokovi",
+    "Prirodni sokovi",
+    "Energetska pića",
+    "Žestoka pića",
+    "Piva",
+    "Vina",
+    "Viski",
+    "Likeri",
+    "Vode",
+    "Dodaci",
+  ];
+
+  function categoryOrderIndex(cat) {
+    var i = CATEGORY_ORDER.indexOf(cat);
+    return i >= 0 ? i : CATEGORY_ORDER.length;
+  }
+
+  function sortCategoriesForFilters(keys) {
+    return keys.slice().sort(function (a, b) {
+      var ia = categoryOrderIndex(a);
+      var ib = categoryOrderIndex(b);
+      if (ia !== ib) return ia - ib;
+      return a.localeCompare(b, "sr");
+    });
+  }
+
+  function sortItemsByCategoryThenName(items) {
+    return items.slice().sort(function (a, b) {
+      var ia = categoryOrderIndex(a.category || "");
+      var ib = categoryOrderIndex(b.category || "");
+      if (ia !== ib) return ia - ib;
+      return (a.name || "").localeCompare(b.name || "", "sr");
+    });
+  }
+
   const FALLBACK_MENU = [
     { name: "Turska kafa", description: "", price: 140, category: "Kafa" },
     { name: "Turska kafa sa mlekom", description: "", price: 150, category: "Kafa" },
@@ -35,9 +78,7 @@
     items.forEach(function (i) {
       if (i.category) cats[i.category] = true;
     });
-    var sorted = Object.keys(cats).sort(function (a, b) {
-      return a.localeCompare(b, "sr");
-    });
+    var sorted = sortCategoriesForFilters(Object.keys(cats));
     var allBtn = document.createElement("button");
     allBtn.type = "button";
     allBtn.className = "filter-chip active";
@@ -60,7 +101,7 @@
     list.innerHTML = "";
     var filtered =
       category === "all"
-        ? items
+        ? sortItemsByCategoryThenName(items)
         : items.filter(function (i) {
             return i.category === category;
           });

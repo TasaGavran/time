@@ -553,6 +553,11 @@ html.dark .menu-cta-btn {
   border-color: rgba(249, 250, 251, 0.08);
 }
 
+/* Kartica sa fotografijom (O nama) – bez unutrašnjeg paddinga na omotaču */
+.about-card.about-card--media {
+  padding: 0;
+}
+
 /* Section transitions: long fade at top and bottom */
 .section-melt {
   position: relative;

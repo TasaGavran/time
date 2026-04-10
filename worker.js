@@ -182,16 +182,16 @@ const DEFAULT_MENU = [
     "description": ""
   },
   {
-    "name": "Hausbrandt Frappe — kafa",
+    "name": "Frappe — kafa",
     "price": 290,
-    "category": "Hausbrandt Frappe",
-    "description": "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić. Hausbrandt."
+    "category": "Frappe",
+    "description": "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić."
   },
   {
-    "name": "Hausbrandt Frappe — šumsko voće",
+    "name": "Frappe — šumsko voće",
     "price": 290,
-    "category": "Hausbrandt Frappe",
-    "description": "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić. Hausbrandt."
+    "category": "Frappe",
+    "description": "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić."
   },
   {
     "name": "Frappe — čokolada",
@@ -931,7 +931,7 @@ const DEFAULT_MENU = [
     "category": "Kokteli (La Casa de Papel)",
     "description": "Lubenica, tonik, džin."
   }
-];
+]
 
 const ADMIN_HASH = "4adddf4287b79c7a279ea400ece0e779bc756ba71d4bad9e1a47cc740d63f013";
 

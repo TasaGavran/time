@@ -46,21 +46,19 @@ const MENU = [
   item("Plazma šejk", 310, "Topli i hladni napici", ""),
   item("Plazma – cheesecake", 350, "Topli i hladni napici", ""),
 
-  // Hausbrandt Frappe (promo letak)
+  // Frappe (kartica menija)
   item(
-    "Hausbrandt Frappe — kafa",
+    "Frappe — kafa",
     290,
-    "Hausbrandt Frappe",
-    "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić. Hausbrandt."
+    "Frappe",
+    "Kafa frappe u visokoj čaši, šlag, preliv od čokolade, vafl kolačić."
   ),
   item(
-    "Hausbrandt Frappe — šumsko voće",
+    "Frappe — šumsko voće",
     290,
-    "Hausbrandt Frappe",
-    "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić. Hausbrandt."
+    "Frappe",
+    "Voćni frappe (šumsko voće), visoka čaša, šlag, čokoladni preliv, vafl kolačić."
   ),
-
-  // Frappe — ukusi (kartica menija)
   item("Frappe — čokolada", 290, "Frappe", ""),
   item("Frappe — vanila", 290, "Frappe", ""),
   item("Frappe — kokos", 290, "Frappe", ""),

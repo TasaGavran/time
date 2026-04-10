@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
     <meta name="theme-color" content="#2B211C" />
+    <link rel="icon" href="/assets/images/favicon-32.png" type="image/png" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
     <title>Admin – Meni | Time Caffe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -58,8 +60,17 @@
     <div id="admin-content" class="hidden">
     <header class="sticky top-0 z-20 border-b border-espresso/10 bg-espresso/95 backdrop-blur dark:border-white/10">
       <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:px-6">
-        <div class="flex items-center gap-4">
-          <a href="/" class="font-display text-lg font-semibold text-cream">Time Caffe</a>
+        <div class="flex min-w-0 items-center gap-3 sm:gap-4">
+          <a href="/" class="flex min-w-0 shrink-0 items-center">
+            <img
+              src="/assets/images/time-caffe-wordmark.png"
+              alt="Time Caffe"
+              width="392"
+              height="605"
+              decoding="async"
+              class="h-8 w-auto max-w-[min(180px,45vw)] object-contain object-left invert sm:h-9"
+            />
+          </a>
           <span class="text-sm text-gold/90">Admin · Meni</span>
         </div>
         <a
@@ -92,22 +103,21 @@
             <select id="add-category" required class="mt-1 w-full rounded-xl border border-espresso/20 bg-white px-3 py-2 text-sm dark:border-white/20 dark:bg-espresso/60 dark:text-cream">
               <option value="">Izaberi kategoriju</option>
               <option value="Kafa">Kafa</option>
+              <option value="Frappe">Frappe</option>
+              <option value="Specijaliteti">Specijaliteti</option>
+              <option value="Kokteli (La Casa de Papel)">Kokteli (La Casa de Papel)</option>
               <option value="Topli i hladni napici">Topli i hladni napici</option>
               <option value="Gazirani sokovi">Gazirani sokovi</option>
               <option value="Negazirani sokovi">Negazirani sokovi</option>
               <option value="Prirodni sokovi">Prirodni sokovi</option>
-              <option value="Vina">Vina</option>
-              <option value="Piva">Piva</option>
+              <option value="Energetska pića">Energetska pića</option>
               <option value="Žestoka pića">Žestoka pića</option>
+              <option value="Piva">Piva</option>
+              <option value="Vina">Vina</option>
               <option value="Viski">Viski</option>
               <option value="Likeri">Likeri</option>
               <option value="Vode">Vode</option>
               <option value="Dodaci">Dodaci</option>
-              <option value="Energetska pića">Energetska pića</option>
-              <option value="Specijaliteti">Specijaliteti</option>
-              <option value="Hausbrandt Frappe">Hausbrandt Frappe</option>
-              <option value="Frappe">Frappe</option>
-              <option value="Kokteli (La Casa de Papel)">Kokteli (La Casa de Papel)</option>
               <option value="Ostalo">Ostalo</option>
             </select>
           </div>
@@ -264,22 +274,21 @@
 
         var CATEGORIES = [
           "Kafa",
+          "Frappe",
+          "Specijaliteti",
+          "Kokteli (La Casa de Papel)",
           "Topli i hladni napici",
           "Gazirani sokovi",
           "Negazirani sokovi",
           "Prirodni sokovi",
-          "Vina",
-          "Piva",
+          "Energetska pića",
           "Žestoka pića",
+          "Piva",
+          "Vina",
           "Viski",
           "Likeri",
           "Vode",
           "Dodaci",
-          "Energetska pića",
-          "Specijaliteti",
-          "Hausbrandt Frappe",
-          "Frappe",
-          "Kokteli (La Casa de Papel)",
           "Ostalo",
         ];
         function categorySelectOptions(selected) {
