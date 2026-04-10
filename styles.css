@@ -28,10 +28,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   max-width: 100%;
   /* Let html own vertical scroll — body must not become a second scroller */
   overflow-x: visible;
   overflow-y: visible;
+  /* iOS: avoid accidental horizontal pan interfering with vertical scroll */
+  touch-action: pan-y pinch-zoom;
 }
 
 /* In-page anchors: fixed header clearance (native fragment scroll + scrollIntoView) */
@@ -88,8 +91,14 @@ html::-webkit-scrollbar {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* Full-screen flyout: allow vertical scroll on short viewports / landscape phones */
 #mobile-menu {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  max-height: 100vh;
+  max-height: 100dvh;
 }
 
 .btn-primary {

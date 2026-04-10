@@ -56,16 +56,38 @@ function initMobileMenu() {
   if (!toggle || !menu) return;
 
   let open = false;
+  let scrollLockY = 0;
   const overlay = document.getElementById("page-transition");
+
+  /** iOS/Android: stop the page scrolling behind the open flyout */
+  function lockBodyScroll() {
+    scrollLockY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+
+  function unlockBodyScroll() {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollLockY);
+  }
 
   function setState(nextOpen) {
     open = nextOpen;
     if (open) {
+      lockBodyScroll();
       menu.style.pointerEvents = "auto";
       menu.style.transform = "translateY(0)";
       menu.style.opacity = "1";
       if (overlay) overlay.style.opacity = "0.6";
     } else {
+      unlockBodyScroll();
       menu.style.pointerEvents = "none";
       menu.style.transform = "translateY(-100%)";
       menu.style.opacity = "0";
@@ -77,6 +99,10 @@ function initMobileMenu() {
 
   menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => setState(false));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open) setState(false);
   });
 }
 
