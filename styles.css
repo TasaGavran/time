@@ -1,14 +1,20 @@
-/* Core layout & helpers – responsive
-   Default vertical scroll on the document (no overflow-y on html) so % heights / masonry layout stay stable.
-   Keep max-width: 100% on body — avoid 100vw (scrollbar gutter / horizontal overflow). */
+/* Core layout: single vertical scroll on the viewport (html).
+   Do not set overflow-x on body/main — paired overflow rules can turn inner blocks into scroll
+   containers and break natural page flow. Clip horizontal overflow only on the root. */
 html {
-  /* auto: avoids fighting GSAP ScrollTrigger; hash jumps use scrollIntoView(smooth) in main.js */
-  scroll-behavior: auto;
-  overflow-x: hidden;
-  max-width: 100%;
   box-sizing: border-box;
-  /* Fixed header (~3.5–5rem): anchors and scrollIntoView land below it */
-  scroll-padding-top: 5.5rem;
+  max-width: 100%;
+  /* Primary scroll container; avoids nested overflow chains from body/main */
+  overflow-x: clip;
+  overflow-y: auto;
+  /* auto: avoids fighting programmatic smooth scroll + GSAP */
+  scroll-behavior: auto;
+}
+
+@supports not (overflow: clip) {
+  html {
+    overflow-x: hidden;
+  }
 }
 
 *,
@@ -19,20 +25,27 @@ html {
 
 body {
   background-color: #f5eee6;
-  overflow-x: hidden;
-  max-width: 100%;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  max-width: 100%;
+  /* Let html own vertical scroll — body must not become a second scroller */
+  overflow-x: visible;
+  overflow-y: visible;
 }
 
-/* Hide all visible scrollbar chrome globally while keeping scrolling. */
-* {
+/* In-page anchors: fixed header clearance (native fragment scroll + scrollIntoView) */
+main [id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Thin scrollbar hiding only on the root — avoid applying to every element (maps, nested UI) */
+html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-*::-webkit-scrollbar {
+html::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;

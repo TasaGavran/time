@@ -103,7 +103,11 @@ function initPageTransitions() {
   document.addEventListener("click", handleClick);
 }
 
-function scrollToCurrentHash() {
+/**
+ * Fragment scroll: clearance for the fixed header comes from CSS
+ * (`main section[id] { scroll-margin-top }` in styles.css), not manual math.
+ */
+function scrollHashTargetIntoView(behavior = "auto") {
   const hash = window.location.hash;
   if (!hash) return;
   let el;
@@ -113,17 +117,33 @@ function scrollToCurrentHash() {
     return;
   }
   if (!el) return;
-  // Two frames: layout (fonts, images, GSAP) settled before measuring scroll target
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
+  el.scrollIntoView({ block: "start", behavior });
 }
 
 function initScrollToHash() {
-  scrollToCurrentHash();
-  window.addEventListener("hashchange", scrollToCurrentHash);
+  function afterLayout() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollHashTargetIntoView("auto");
+      });
+    });
+  }
+
+  if (window.location.hash) {
+    afterLayout();
+    window.addEventListener("load", () => scrollHashTargetIntoView("auto"), {
+      once: true,
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready
+        .then(() => scrollHashTargetIntoView("auto"))
+        .catch(() => {});
+    }
+  }
+
+  window.addEventListener("hashchange", () =>
+    scrollHashTargetIntoView("auto")
+  );
 }
 
 function initParallax() {
@@ -136,6 +156,10 @@ function initParallax() {
 function initGSAP() {
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+  });
 
   gsap.from("#hero h1", {
     y: 40,
@@ -175,14 +199,15 @@ function initGSAP() {
     });
   });
 
-  ScrollTrigger.refresh();
-  window.addEventListener(
-    "load",
-    () => {
-      ScrollTrigger.refresh();
-    },
-    { once: true }
-  );
+  function refreshST() {
+    ScrollTrigger.refresh();
+  }
+  refreshST();
+  window.addEventListener("load", refreshST, { once: true });
+  window.addEventListener("resize", refreshST);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(refreshST).catch(() => {});
+  }
 }
 
 function initGalleryLightbox() {

@@ -74,10 +74,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <!-- Custom styles (relative URL works locally + Cloudflare; load last in head vs Tailwind inject) -->
-    <link rel="stylesheet" href="/styles.css?v=23" />
+    <link rel="stylesheet" href="/styles.css?v=24" />
   </head>
   <body
-    class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full overflow-x-hidden"
+    class="bg-cream text-espresso font-body antialiased transition-colors duration-500 ease-out min-w-0 w-full"
   >
     <!-- Page transition overlay -->
     <div
@@ -170,7 +170,7 @@
     </header>
 
     <!-- Hero -->
-    <main class="relative w-full min-w-0 overflow-x-hidden">
+    <main class="relative w-full min-w-0">
       <section
         id="hero"
         class="section-melt relative z-0 flex min-h-screen items-center justify-center overflow-hidden bg-[#bea076] text-espresso dark:bg-[#211812] dark:text-cream"
@@ -695,14 +695,14 @@
     <footer
       class="border-t border-espresso/15 bg-gradient-to-b from-[#ccb79d] via-[#dfcfbc] to-cream py-8 text-espresso backdrop-blur dark:border-black/40 dark:bg-gradient-to-b dark:from-[#17110e] dark:via-[#130f0c] dark:to-[#0f0b09] dark:text-cream"
     >
-      <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6 min-w-0">
-        <div class="flex items-center gap-3">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:flex-wrap md:items-start md:justify-between md:gap-x-8 md:gap-y-4 md:px-6 min-w-0">
+        <div class="flex min-w-0 items-center gap-3">
           <div class="leading-tight">
             <p class="text-sm font-semibold">Time Caffe</p>
             <p class="text-xs text-espresso/70 dark:text-cream/70">Knjeginje Milice 76/1, Jagodina, Srbija</p>
           </div>
         </div>
-          <div class="flex flex-col gap-2 text-xs text-espresso/70 dark:text-cream/70 md:flex-row md:items-center md:gap-6">
+        <div class="flex min-w-0 flex-col gap-2 text-xs text-espresso/70 dark:text-cream/70 md:flex-row md:flex-wrap md:items-center md:gap-x-6 md:gap-y-2">
           <div class="flex items-center gap-3">
             <span class="font-medium text-espresso dark:text-cream">Pratite nas:</span>
             <div class="flex items-center gap-2">
@@ -720,14 +720,14 @@
             <span>Tel: 064 019 0460 · Za rezervaciju stola pozovite nas</span>
           </div>
         </div>
-        <p class="text-xs text-espresso/60 dark:text-cream/60 md:text-right">
+        <p class="w-full text-xs text-espresso/60 dark:text-cream/60 md:w-auto md:shrink-0 md:text-right">
           © 2026 Time Caffe – Sva prava zadržana
           <a href="/admin.html" class="ml-2 text-gold/80 hover:text-gold">Admin</a>
         </p>
       </div>
     </footer>
 
-    <script src="/main.js?v=11" defer></script>
+    <script src="/main.js?v=12" defer></script>
   </body>
 </html>
 
