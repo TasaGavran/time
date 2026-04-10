@@ -282,7 +282,7 @@
                       Radno vreme
                     </p>
                     <p>Pon–Pet: 07:30 – 00:00</p>
-                    <p>Sub–Ned: 08:00 – 12:00</p>
+                    <p>Sub–Ned: 08:00 – 00:00</p>
                   </div>
                   <div class="space-y-2">
                     <p class="text-[11px] uppercase tracking-[0.18em] text-gold">
@@ -641,7 +641,7 @@
               <p><span class="font-medium text-gold">Telefon:</span> +381 xx xxx xxxx</p>
               <p>
                 <span class="font-medium text-gold">Radno vreme:</span>
-                Pon–Pet: 07:30 – 00:00 · Sub–Ned: 08:00 – 12:00
+                Pon–Pet: 07:30 – 00:00 · Sub–Ned: 08:00 – 00:00
               </p>
               <p class="pt-2 text-espresso/90 dark:text-cream/90">Za rezervaciju stola pozovite nas na navedeni broj.</p>
             </div>
